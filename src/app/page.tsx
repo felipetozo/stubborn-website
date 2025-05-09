@@ -107,16 +107,9 @@ export default function Home() {
         headerTitle="Fale Conosco"
         position="right"
         formFields={[
-          {
-            id: 'name',
-            label: 'Nome completo:',
-            required: true
-          },
-          {
-            id: 'city',
-            label: 'Cidade:',
-            required: true
-          }
+          { id: 'name', label: 'Nome completo:', required: true },
+          { id: 'city', label: 'Cidade:', required: true },
+          { id: 'whatsapp', label: 'WhatsApp:', required: true },
         ]}
       />
     </div>

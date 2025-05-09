@@ -1,15 +1,7 @@
-/**
- * WhatsAppWidget.tsx
- *
- * Um componente de chat flutuante para WhatsApp que permite aos usuários
- * iniciar uma conversa diretamente do seu site.
- */
-
 "use client";
 
-import React, { useState, useEffect, FormEvent } from "react";
+import React, { useState, useEffect } from "react";
 
-// 1. Defina a interface para as props do componente
 interface WhatsappWidgetProps {
   phoneNumber: string;
   welcomeMessage: string;
@@ -18,12 +10,9 @@ interface WhatsappWidgetProps {
   formFields?: { id: string; label: string; required: boolean; }[];
 }
 
-// 2. Define the type for messages
 interface Message {
   from: 'bot' | 'user';
   text: string;
-  isButtonList?: boolean;
-  buttons?: { label: string; value: string; }[];
 }
 
 const WhatsappWidget: React.FC<WhatsappWidgetProps> = ({
@@ -38,8 +27,8 @@ const WhatsappWidget: React.FC<WhatsappWidgetProps> = ({
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
   const [whatsappNumber, setWhatsappNumber] = useState("");
-  const [product, setProduct] = useState("");
-  const [messages, setMessages] = useState<Message[]>([]); // Use the Message interface here
+  const [productInterest, setProductInterest] = useState("");
+  const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
 
   const toggleChat = () => setIsOpen(!isOpen);
@@ -50,7 +39,7 @@ const WhatsappWidget: React.FC<WhatsappWidgetProps> = ({
       setName("");
       setCity("");
       setWhatsappNumber("");
-      setProduct("");
+      setProductInterest("");
       setMessages([]);
       setIsTyping(false);
     } else {
@@ -61,10 +50,10 @@ const WhatsappWidget: React.FC<WhatsappWidgetProps> = ({
     }
   }, [isOpen, welcomeMessage]);
 
-  const addBotMessage = (text: string, isButtonList = false, buttons: { label: string; value: string; }[] = []) => {
+  const addBotMessage = (text: string): void => {
     setIsTyping(true);
     setTimeout(() => {
-      setMessages((prev) => [...prev, { from: "bot", text, isButtonList, buttons }]);
+      setMessages(prevMessages => [...prevMessages, { from: "bot", text }]);
       setIsTyping(false);
     }, 800);
   };
@@ -73,77 +62,46 @@ const WhatsappWidget: React.FC<WhatsappWidgetProps> = ({
     setMessages((prev) => [...prev, { from: "user", text }]);
     if (step === 1) {
       setName(text);
-      if (formFields?.find(field => field.id === 'city')) {
+      if (formFields?.find(f => f.id === 'city')) {
         addBotMessage(`Prazer, ${text}! De qual cidade você está falando?`);
         setStep(2);
-      } else if (formFields?.find(field => field.id === 'whatsapp')) {
+      } else if (formFields?.find(f => f.id === 'whatsapp')) {
         addBotMessage(`Prazer, ${text}! Qual o seu número de WhatsApp?`);
         setStep(3);
       }
       else {
-        addBotMessage(`Prazer, ${text}! Selecione o produto desejado:`, true, [
-          { label: "Telhas Isotérmicas", value: "Telhas Isotérmicas" },
-          { label: "Painéis Isotérmicas", value: "Painéis Isotérmicas" },
-          { label: "Lajes em EPS", value: "Lajes em EPS" },
-          { label: "Flocos em EPS", value: "Flocos em EPS" },
-        ]);
+        addBotMessage(`Prazer, ${text}! Qual seu produto de interesse:`);
         setStep(4);
       }
     } else if (step === 2) {
       setCity(text);
-      if (formFields?.find(field => field.id === 'whatsapp')) {
+      if (formFields?.find(f => f.id === 'whatsapp')) {
         addBotMessage("Qual o seu número de WhatsApp para contato?");
         setStep(3);
       } else {
-        addBotMessage("Selecione o produto desejado:", true, [
-          { label: "Telhas Isotérmicas", value: "Telhas Isotérmicas" },
-          { label: "Painéis Isotérmicas", value: "Painéis Isotérmicas" },
-          { label: "Lajes em EPS", value: "Lajes em EPS" },
-          { label: "Flocos em EPS", value: "Flocos em EPS" },
-        ]);
+        addBotMessage(`Qual seu produto de interesse:`);
         setStep(4);
       }
     } else if (step === 3) {
-      setWhatsappNumber(text); // Usar o estado correto
-      addBotMessage("Selecione o produto desejado:", true, [
-        { label: "Telhas Isotérmicas", value: "Telhas Isotérmicas" },
-        { label: "Painéis Isotérmicas", value: "Painéis Isotérmicas" },
-        { label: "Lajes em EPS", value: "Lajes em EPS" },
-        { label: "Flocos em EPS", value: "Flocos em EPS" },
-      ]);
+      setWhatsappNumber(text);
+      addBotMessage(`Qual seu produto de interesse:`);
       setStep(4);
-    } else if (step === 4) {
-      setProduct(text);
-      const whatsappMessage = whatsappNumber
-        ? `Obrigado pelo seu contato, ${name}! Em breve, um de nossos consultores entrará em contato com você pelo WhatsApp: ${whatsappNumber} para falar sobre ${text}.`
-        : `Obrigado pelo seu contato, ${name}! Em breve, um de nossos consultores entrará em contato com você para falar sobre ${text}.`;
-      addBotMessage(whatsappMessage);
-      setTimeout(() => {
-        addBotMessage("Agradecemos seu interesse nos produtos Isoart!");
-        setStep(5);
-      }, 1500);
     }
   };
 
-  const selectProductHandler = (productValue: string) => {
-    setProduct(productValue);
-    handleUserInput(productValue);
-  };
-
-  // CSS transitions instead of framer-motion
-  const chatContainerStyle = {
-    opacity: isOpen ? 1 : 0,
-    transform: isOpen ? 'translateY(0)' : 'translateY(20px)',
-    transition: 'opacity 0.3s ease, transform 0.3s ease',
-    display: isOpen ? 'flex' : 'none',
-    [position === 'right' ? 'right' : 'right']: '6',
+  const handleProductSelection = (product: string) => {
+    setProductInterest(product);
+    setMessages((prev) => [...prev, { from: "user", text: product }]);
+    addBotMessage(`Obrigado pelo seu contato, ${name}! Um consultor entrará em contato em breve.`);
+    setStep(5);
   };
 
   return (
-    <div>
+    <div className="fixed z-50">
       <button
         onClick={toggleChat}
-        className={`fixed bottom-6 ${position}-6 bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-700`}
+        className={`fixed bottom-6 ${position}-6 bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-700 z-50`}
+        aria-label="Chat WhatsApp"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -161,79 +119,84 @@ const WhatsappWidget: React.FC<WhatsappWidgetProps> = ({
         </svg>
       </button>
 
-      <div
-        style={chatContainerStyle}
-        className="fixed bottom-20 w-80 bg-white rounded-xl shadow-xl flex flex-col overflow-hidden border border-gray-300"
-      >
-        <div className="bg-green-600 text-white p-4 font-semibold">{headerTitle}</div>
-        <div className="p-4 space-y-2 flex-1 overflow-y-auto max-h-96">
-          {messages.map((msg, i) => (
-            <div key={i}>
-              <div
-                className={`text-sm p-2 rounded-lg max-w-[80%] ${msg.from === "bot" ? "bg-gray-100 text-gray-800 self-start" : "bg-green-600 text-white self-end ml-auto"}`}
-              >
-                {msg.text}
-              </div>
-              {msg.from === "bot" && msg.isButtonList && msg.buttons?.length > 0 && (
-                <div className="grid grid-cols-2 gap-2 mt-2">
-                  {msg.buttons.map((button) => (
-                    <button
-                      key={button.value}
-                      onClick={() => selectProductHandler(button.value)}
-                      className="bg-green-600 text-white p-2 rounded text-sm hover:bg-green-700"
-                    >
-                      {button.label}
-                    </button>
-                  ))}
+      {isOpen && (
+        <div
+          className={`fixed ${position}-6 bottom-24 w-80 bg-white rounded-xl shadow-xl flex flex-col overflow-hidden border border-gray-300 transition-all duration-300`}
+          style={{
+            opacity: isOpen ? 1 : 0,
+            transform: isOpen ? 'translateY(0)' : 'translateY(20px)',
+          }}
+        >
+          <div className="bg-green-600 text-white p-4 font-semibold">{headerTitle}</div>
+          <div className="p-4 space-y-2 flex-1 overflow-y-auto max-h-96">
+            {messages.map((msg, i) => (
+              <div key={i}>
+                <div
+                  className={`text-sm p-2 rounded-lg max-w-[80%] ${msg.from === "bot" ? "bg-gray-100 text-gray-800 self-start" : "bg-green-600 text-white self-end ml-auto"}`}
+                >
+                  {msg.text}
                 </div>
-              )}
+              </div>
+            ))}
+            {isTyping && (
+              <div className="text-sm text-gray-500 italic">Digitando...</div>
+            )}
+            {step === 4 && (
+              <div className="grid grid-cols-2 gap-2 mt-2">
+                {["Telhas Isotérmicas", "Construção Civil", "Molduras", "Embalagens em EPS"].map((option) => (
+                  <button
+                    key={option}
+                    onClick={() => handleProductSelection(option)}
+                    className="text-sm border border-green-600 text-green-600 py-2 rounded hover:bg-green-100"
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          {step < 4 && (
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const form = e.currentTarget;
+                const input = form.elements.namedItem('userInput') as HTMLInputElement;
+                if (input && input.value.trim()) {
+                  handleUserInput(input.value.trim());
+                  form.reset();
+                }
+              }}
+              className="p-2 border-t flex gap-2"
+            >
+              <input
+                name="userInput"
+                autoFocus
+                placeholder="Digite aqui..."
+                className="flex-1 p-2 border rounded text-sm focus:border-green-600 focus:outline-none"
+                type={step === 3 ? "tel" : "text"}
+              />
+              <button
+                type="submit"
+                className="bg-green-600 text-white px-4 rounded hover:bg-green-700"
+              >
+                Enviar
+              </button>
+            </form>
+          )}
+          {step >= 5 && (
+            <div className="p-4 border-t flex justify-center">
+              <button
+                onClick={() => setIsOpen(false)}
+                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 text-sm"
+              >
+                Fechar
+              </button>
             </div>
-          ))}
-          {isTyping && (
-            <div className="text-sm text-gray-500 italic">Digitando...</div>
           )}
         </div>
-        {step < 4 && !messages.some(msg => msg.from === 'bot' && msg.isButtonList) && (
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              const input = (e.target.elements.userInput as HTMLInputElement).value.trim();
-              if (input) {
-                handleUserInput(input);
-                (e.target as HTMLFormElement).reset();
-              }
-            }}
-            className="p-2 border-t flex gap-2"
-          >
-            <input
-              name="userInput"
-              autoFocus
-              placeholder="Digite aqui..."
-              className="flex-1 p-2 border rounded text-sm focus:border-green-600 focus:outline-none"
-              type={step === 3 ? "tel" : "text"}
-            />
-            <button
-              type="submit"
-              className="bg-green-600 text-white px-4 rounded hover:bg-green-700"
-            >
-              Enviar
-            </button>
-          </form>
-        )}
-        {step >= 5 && (
-          <div className="p-4 border-t flex justify-center">
-            <button
-              onClick={() => setIsOpen(false)}
-              className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 text-sm"
-            >
-              Fechar
-            </button>
-          </div>
-        )}
-      </div>
+      )}
     </div>
   );
 };
 
 export default WhatsappWidget;
-
