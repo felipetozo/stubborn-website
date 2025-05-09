@@ -1,13 +1,35 @@
+/**
+ * WhatsAppWidget.tsx
+ *
+ * Um componente de chat flutuante para WhatsApp que permite aos usuários
+ * iniciar uma conversa diretamente do seu site.
+ */
+
 "use client";
 
 import React, { useState, useEffect } from "react";
 
-const WhatsappWidget = () => {
+// 1. Defina a interface para as props do componente
+interface WhatsappWidgetProps {
+  phoneNumber: string;
+  welcomeMessage: string;
+  headerTitle: string;
+  position?: 'left' | 'right';
+  formFields?: { id: string; label: string; required: boolean; }[];
+}
+
+const WhatsappWidget: React.FC<WhatsappWidgetProps> = ({
+  phoneNumber,
+  welcomeMessage,
+  headerTitle,
+  position = 'right',
+  formFields,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(0);
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
-  const [whatsapp, setWhatsapp] = useState("");
+  const [whatsappNumber, setWhatsappNumber] = useState(""); // Renomeado para evitar conflito
   const [product, setProduct] = useState("");
   const [messages, setMessages] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
@@ -19,19 +41,19 @@ const WhatsappWidget = () => {
       setStep(0);
       setName("");
       setCity("");
-      setWhatsapp("");
+      setWhatsappNumber("");
       setProduct("");
       setMessages([]);
       setIsTyping(false);
     } else {
       setTimeout(() => {
-        addBotMessage("Olá! Qual o seu nome?");
+        addBotMessage(welcomeMessage);
         setStep(1);
       }, 500);
     }
-  }, [isOpen]);
+  }, [isOpen, welcomeMessage]);
 
-  const addBotMessage = (text, isButtonList = false, buttons = []) => {
+  const addBotMessage = (text, isButtonList = false, buttons: { label: string; value: string; }[] = []) => {
     setIsTyping(true);
     setTimeout(() => {
       setMessages((prev) => [...prev, { from: "bot", text, isButtonList, buttons }]);
@@ -39,18 +61,42 @@ const WhatsappWidget = () => {
     }, 800);
   };
 
-  const handleUserInput = (text) => {
+  const handleUserInput = (text: string) => {
     setMessages((prev) => [...prev, { from: "user", text }]);
     if (step === 1) {
       setName(text);
-      addBotMessage(`Prazer, ${text}! De qual cidade você está falando?`);
-      setStep(2);
+      if (formFields?.find(field => field.id === 'city')) {
+        addBotMessage(`Prazer, ${text}! De qual cidade você está falando?`);
+        setStep(2);
+      } else if (formFields?.find(field => field.id === 'whatsapp')) {
+        addBotMessage(`Prazer, ${text}! Qual o seu número de WhatsApp?`);
+        setStep(3);
+      }
+      else {
+        addBotMessage(`Prazer, ${text}! Selecione o produto desejado:`, true, [
+          { label: "Telhas Isotérmicas", value: "Telhas Isotérmicas" },
+          { label: "Painéis Isotérmicos", value: "Painéis Isotérmicos" },
+          { label: "Lajes em EPS", value: "Lajes em EPS" },
+          { label: "Flocos em EPS", value: "Flocos em EPS" },
+        ]);
+        setStep(4);
+      }
     } else if (step === 2) {
       setCity(text);
-      addBotMessage("Qual o seu número de WhatsApp para que possamos entrar em contato?", false);
-      setStep(3);
+      if (formFields?.find(field => field.id === 'whatsapp')) {
+        addBotMessage("Qual o seu número de WhatsApp para contato?");
+        setStep(3);
+      } else {
+        addBotMessage("Selecione o produto desejado:", true, [
+          { label: "Telhas Isotérmicas", value: "Telhas Isotérmicas" },
+          { label: "Painéis Isotérmicos", value: "Painéis Isotérmicos" },
+          { label: "Lajes em EPS", value: "Lajes em EPS" },
+          { label: "Flocos em EPS", value: "Flocos em EPS" },
+        ]);
+        setStep(4);
+      }
     } else if (step === 3) {
-      setWhatsapp(text);
+      setWhatsappNumber(text); // Usar o estado correto
       addBotMessage("Selecione o produto desejado:", true, [
         { label: "Telhas Isotérmicas", value: "Telhas Isotérmicas" },
         { label: "Painéis Isotérmicos", value: "Painéis Isotérmicos" },
@@ -60,8 +106,10 @@ const WhatsappWidget = () => {
       setStep(4);
     } else if (step === 4) {
       setProduct(text);
-      addBotMessage(`Você selecionou: ${text}`);
-      addBotMessage(`Obrigado pelo seu contato, ${name}! Em breve, um de nossos consultores entrará em contato com você pelo WhatsApp: ${whatsapp} para falar sobre ${text}.`);
+      const whatsappMessage = whatsappNumber
+        ? `Obrigado pelo seu contato, ${name}! Em breve, um de nossos consultores entrará em contato com você pelo WhatsApp: ${whatsappNumber} para falar sobre ${text}.`
+        : `Obrigado pelo seu contato, ${name}! Em breve, um de nossos consultores entrará em contato com você para falar sobre ${text}.`;
+      addBotMessage(whatsappMessage);
       setTimeout(() => {
         addBotMessage("Agradecemos seu interesse nos produtos Isoart!");
         setStep(5);
@@ -69,8 +117,9 @@ const WhatsappWidget = () => {
     }
   };
 
-  const selectProduct = (product) => {
-    handleUserInput(product);
+  const selectProductHandler = (productValue: string) => {
+    setProduct(productValue);
+    handleUserInput(productValue);
   };
 
   // CSS transitions instead of framer-motion
@@ -78,14 +127,15 @@ const WhatsappWidget = () => {
     opacity: isOpen ? 1 : 0,
     transform: isOpen ? 'translateY(0)' : 'translateY(20px)',
     transition: 'opacity 0.3s ease, transform 0.3s ease',
-    display: isOpen ? 'flex' : 'none'
+    display: isOpen ? 'flex' : 'none',
+    [position === 'right' ? 'right' : 'right']: '6',
   };
 
   return (
     <div>
       <button
         onClick={toggleChat}
-        className="fixed bottom-6 right-6 bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-700"
+        className={`fixed bottom-6 ${position}-6 bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-700`}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -105,9 +155,9 @@ const WhatsappWidget = () => {
 
       <div
         style={chatContainerStyle}
-        className="fixed bottom-20 right-6 w-80 bg-white rounded-xl shadow-xl flex flex-col overflow-hidden border border-gray-300"
+        className="fixed bottom-20 w-80 bg-white rounded-xl shadow-xl flex flex-col overflow-hidden border border-gray-300"
       >
-        <div className="bg-green-600 text-white p-4 font-semibold">WhatsApp Atendimento Isoart</div>
+        <div className="bg-green-600 text-white p-4 font-semibold">{headerTitle}</div>
         <div className="p-4 space-y-2 flex-1 overflow-y-auto max-h-96">
           {messages.map((msg, i) => (
             <div key={i}>
@@ -116,12 +166,12 @@ const WhatsappWidget = () => {
               >
                 {msg.text}
               </div>
-              {msg.from === "bot" && msg.isButtonList && msg.buttons.length > 0 && (
+              {msg.from === "bot" && msg.isButtonList && msg.buttons?.length > 0 && (
                 <div className="grid grid-cols-2 gap-2 mt-2">
                   {msg.buttons.map((button) => (
                     <button
                       key={button.value}
-                      onClick={() => selectProduct(button.value)}
+                      onClick={() => selectProductHandler(button.value)}
                       className="bg-green-600 text-white p-2 rounded text-sm hover:bg-green-700"
                     >
                       {button.label}
@@ -152,7 +202,7 @@ const WhatsappWidget = () => {
               autoFocus
               placeholder="Digite aqui..."
               className="flex-1 p-2 border rounded text-sm focus:border-green-600 focus:outline-none"
-              type={step === 3 ? "tel" : "text"} // Especifica o tipo para o WhatsApp
+              type={step === 3 ? "tel" : "text"}
             />
             <button
               type="submit"
