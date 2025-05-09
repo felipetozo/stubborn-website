@@ -7,7 +7,7 @@
 
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FormEvent } from "react";
 
 // 1. Defina a interface para as props do componente
 interface WhatsappWidgetProps {
@@ -16,6 +16,14 @@ interface WhatsappWidgetProps {
   headerTitle: string;
   position?: 'left' | 'right';
   formFields?: { id: string; label: string; required: boolean; }[];
+}
+
+// 2. Define the type for messages
+interface Message {
+  from: 'bot' | 'user';
+  text: string;
+  isButtonList?: boolean;
+  buttons?: { label: string; value: string; }[];
 }
 
 const WhatsappWidget: React.FC<WhatsappWidgetProps> = ({
@@ -29,9 +37,9 @@ const WhatsappWidget: React.FC<WhatsappWidgetProps> = ({
   const [step, setStep] = useState(0);
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
-  const [whatsappNumber, setWhatsappNumber] = useState(""); // Renomeado para evitar conflito
+  const [whatsappNumber, setWhatsappNumber] = useState("");
   const [product, setProduct] = useState("");
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<Message[]>([]); // Use the Message interface here
   const [isTyping, setIsTyping] = useState(false);
 
   const toggleChat = () => setIsOpen(!isOpen);
@@ -53,7 +61,7 @@ const WhatsappWidget: React.FC<WhatsappWidgetProps> = ({
     }
   }, [isOpen, welcomeMessage]);
 
-  const addBotMessage = (text, isButtonList = false, buttons: { label: string; value: string; }[] = []) => {
+  const addBotMessage = (text: string, isButtonList = false, buttons: { label: string; value: string; }[] = []) => {
     setIsTyping(true);
     setTimeout(() => {
       setMessages((prev) => [...prev, { from: "bot", text, isButtonList, buttons }]);
@@ -75,7 +83,7 @@ const WhatsappWidget: React.FC<WhatsappWidgetProps> = ({
       else {
         addBotMessage(`Prazer, ${text}! Selecione o produto desejado:`, true, [
           { label: "Telhas Isotérmicas", value: "Telhas Isotérmicas" },
-          { label: "Painéis Isotérmicos", value: "Painéis Isotérmicos" },
+          { label: "Painéis Isotérmicas", value: "Painéis Isotérmicas" },
           { label: "Lajes em EPS", value: "Lajes em EPS" },
           { label: "Flocos em EPS", value: "Flocos em EPS" },
         ]);
@@ -89,7 +97,7 @@ const WhatsappWidget: React.FC<WhatsappWidgetProps> = ({
       } else {
         addBotMessage("Selecione o produto desejado:", true, [
           { label: "Telhas Isotérmicas", value: "Telhas Isotérmicas" },
-          { label: "Painéis Isotérmicos", value: "Painéis Isotérmicos" },
+          { label: "Painéis Isotérmicas", value: "Painéis Isotérmicas" },
           { label: "Lajes em EPS", value: "Lajes em EPS" },
           { label: "Flocos em EPS", value: "Flocos em EPS" },
         ]);
@@ -99,7 +107,7 @@ const WhatsappWidget: React.FC<WhatsappWidgetProps> = ({
       setWhatsappNumber(text); // Usar o estado correto
       addBotMessage("Selecione o produto desejado:", true, [
         { label: "Telhas Isotérmicas", value: "Telhas Isotérmicas" },
-        { label: "Painéis Isotérmicos", value: "Painéis Isotérmicos" },
+        { label: "Painéis Isotérmicas", value: "Painéis Isotérmicas" },
         { label: "Lajes em EPS", value: "Lajes em EPS" },
         { label: "Flocos em EPS", value: "Flocos em EPS" },
       ]);
@@ -189,10 +197,10 @@ const WhatsappWidget: React.FC<WhatsappWidgetProps> = ({
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              const input = e.target.elements.userInput.value.trim();
+              const input = (e.target.elements.userInput as HTMLInputElement).value.trim();
               if (input) {
                 handleUserInput(input);
-                e.target.reset();
+                (e.target as HTMLFormElement).reset();
               }
             }}
             className="p-2 border-t flex gap-2"
@@ -228,3 +236,4 @@ const WhatsappWidget: React.FC<WhatsappWidgetProps> = ({
 };
 
 export default WhatsappWidget;
+

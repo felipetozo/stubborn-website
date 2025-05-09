@@ -103,7 +103,7 @@ export default function Home() {
       {/* WhatsApp Widget */}
       <WhatsAppWidget
         phoneNumber="5545991584114"
-        welcomeMessage="Olá! Como posso ajudar você hoje?"
+        welcomeMessage="Olá! Como posso te chamar?"
         headerTitle="Fale Conosco"
         position="right"
         formFields={[
