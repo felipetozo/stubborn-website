@@ -1,5 +1,4 @@
 import Image from "next/image";
-import WhatsAppWidget from "@/components/WhatsAppWidget";
 
 export default function Home() {
   return (
@@ -99,19 +98,6 @@ export default function Home() {
           Go to nextjs.org →
         </a>
       </footer>
-
-      {/* WhatsApp Widget */}
-      <WhatsAppWidget
-        phoneNumber="5545991584114"
-        welcomeMessage="Olá! Como posso te chamar?"
-        headerTitle="Fale Conosco"
-        position="right"
-        formFields={[
-          { id: 'name', label: 'Nome completo:', required: true },
-          { id: 'city', label: 'Cidade:', required: true },
-          { id: 'whatsapp', label: 'WhatsApp:', required: true },
-        ]}
-      />
     </div>
   );
 }
