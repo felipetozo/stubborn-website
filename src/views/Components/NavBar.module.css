@@ -5,6 +5,7 @@
     padding: 1rem 0;
     backdrop-filter: blur(1rem);
     border-bottom: 1px solid rgba(var(--color-stubbornWhite), 0.05);
+    z-index: 9999;
 }
 
 .navBarWrapper {

@@ -1,0 +1,113 @@
+.workSection {
+    width: 100%;
+    background-color: rgba(var(--color-Black), 1);
+    padding: 0 0 10rem 0;
+}
+
+.workWrapper {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1600px;
+}
+
+.workHeader h2 {
+    margin-bottom: 2rem;
+}
+
+.workHeader p {
+    color: rgba(var(--color-stubbornWhite), 0.7);
+}
+
+.blueText {
+    color: rgba(var(--color-stubbornBlue), 1);
+}
+
+.workGrid {
+    margin-top: 5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 2rem;
+}
+
+.workGrid a {
+    display: flex;
+    flex-direction: column;
+    color: rgba(var(--color-stubbornWhite), 0.65);
+    gap: 2rem;
+    justify-content: space-between;
+}
+
+.workGridItem a:hover span {
+    animation: btnAnimation 0.2s ease-in-out forwards;
+}
+
+.workGridItem:hover {
+    transform: translateY(-0.5rem);
+    background-color: rgba(var(--color-stubbornBlue), 0.05);
+    border: 1px solid rgba(var(--color-stubbornBlue), 0.5);
+}
+
+.workGridItem:hover a {
+    color: rgba(var(--color-stubbornWhite), 1);
+}
+
+.workGridItem {
+    padding: 2rem;
+    background-color: rgba(var(--color-stubbornWhite), 0.05);
+    border: 1px solid rgba(var(--color-stubbornWhite), 0.15);
+    border-radius: 1rem;
+    width: 80%;
+    transition: all 0.2s ease;
+}
+
+.workGridItem img {
+    border-radius: 0.5rem;
+}
+
+.workGridItemContent {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+}
+
+@media (min-width: 1200px) {
+    .workGrid {
+        flex-direction: row;
+    }
+
+    .workHeader p {
+        width: 80%;
+    }
+
+    .workGridItem {
+        width: 100%;
+    }
+}
+
+/* ======================================== */
+/* Animação dos botões   */
+/* ======================================== */
+
+@keyframes btnAnimation {
+    0% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(200%);
+        opacity: 0;
+    }
+
+    51% {
+        transform: translateY(-200%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0%);
+        opacity: 1;
+        color: rgba(var(--color-stubbornWhite), 0.8);
+    }
+}
