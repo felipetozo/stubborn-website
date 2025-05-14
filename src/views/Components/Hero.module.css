@@ -1,0 +1,40 @@
+.HeroSection {
+    width: 100%;
+    padding: 10rem 0;
+}
+
+.HeroSectionWrapper {
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 3rem;
+}
+
+.HeroSectionContainer {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: 3rem;
+}
+
+.HeroSectionContainer img {
+    width: 100%;
+    fill: cover;
+    border-radius: 1rem;
+}
+
+.buttonsFlex {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+}
+
+@media (min-width: 1200px) {
+    .HeroSectionWrapper {
+        width: 80%;
+        flex-direction: row;
+    }
+}

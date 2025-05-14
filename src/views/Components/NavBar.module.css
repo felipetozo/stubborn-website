@@ -1,0 +1,36 @@
+.navBar {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    padding: 2rem 0;
+}
+
+.navBarWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.navBarItems {
+    display: none;
+}
+
+.navBarItems ul {
+    display: flex;
+    flex-direction: row;
+    padding: 0.5rem 1rem;
+    background-color: rgba(var(--color-stubbornBlack), 0.1);
+    border: 1px solid rgba(var(--color-stubbornWhite), 0.1);
+    border-radius: 0.5rem;
+}
+
+@media (min-width: 1200px) {
+
+    .navBarItems {
+        display: block;
+    }
+
+}
