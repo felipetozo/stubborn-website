@@ -45,6 +45,11 @@ h3 {
   font-family: var(--font-spaceGrotesk);
 }
 
+h5 {
+  font-size: clamp(1.4rem, 1.4vw, 2rem);
+  font-family: var(--font-spaceGrotesk);
+}
+
 p {
   font-size: 1rem;
   line-height: 160%;

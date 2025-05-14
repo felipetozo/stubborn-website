@@ -1,0 +1,39 @@
+.footerSection {
+    width: 100%;
+    padding: 5rem 0;
+}
+
+.footerWrapper {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.footerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 1600px;
+}
+
+.footerContent {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.footerContent p {
+    color: rgba(var(--color-stubbornWhite), 0.65);
+}
+
+.footerCNPJ p {
+    padding-top: 3rem;
+    font-size: 0.8rem;
+    color: rgba(var(--color-stubbornWhite), 0.65);
+}
+
+@media (min-width: 1200px) {
+    .footerContainer {
+        flex-direction: row;
+    }
+}

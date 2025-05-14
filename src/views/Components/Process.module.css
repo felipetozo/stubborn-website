@@ -32,7 +32,7 @@
 .processGridItem {
     display: flex;
     flex-direction: column;
-    border: 1px solid rgba(var(--color-stubbornBlue), 0.2);
+    border: 1px solid rgba(var(--color-stubbornWhite), 0.1);
     padding: 2rem;
     border-radius: 1rem;
     background-color: rgba(var(--color-stubbornWhite), 0.05);

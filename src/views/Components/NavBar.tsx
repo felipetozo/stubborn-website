@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Button from '@/views/UI/Button';
 
 function NavBar() {
+
     return (
         <>
             <nav className={styles.navBar}>

@@ -1,7 +1,6 @@
 .workSection {
     width: 100%;
-    background-color: rgba(var(--color-Black), 1);
-    padding: 0 0 10rem 0;
+    padding: 10rem 0;
 }
 
 .workWrapper {
@@ -43,8 +42,8 @@
 
 .workGridItem:hover {
     transform: translateY(-0.5rem);
-    background-color: rgba(var(--color-stubbornBlue), 0.05);
-    border: 1px solid rgba(var(--color-stubbornBlue), 0.5);
+    background-color: rgba(var(--color-stubbornWhite), 0.03);
+    border: 1px solid rgba(var(--color-stubbornBlue), 0.25);
 }
 
 .workGridItem:hover a {
@@ -53,8 +52,8 @@
 
 .workGridItem {
     padding: 2rem;
-    background-color: rgba(var(--color-stubbornWhite), 0.05);
-    border: 1px solid rgba(var(--color-stubbornWhite), 0.15);
+    background-color: rgba(var(--color-stubbornWhite), 0.02);
+    border: 1px solid rgba(var(--color-stubbornWhite), 0.1);
     border-radius: 1rem;
     width: 80%;
     transition: all 0.2s ease;
