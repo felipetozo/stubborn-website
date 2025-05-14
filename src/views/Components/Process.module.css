@@ -1,0 +1,62 @@
+.processSection {
+    width: 100%;
+    background-color: rgba(var(--color-Black), 1);
+    padding: 10rem 0;
+}
+
+.processWrapper {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1600px;
+}
+
+.blueText {
+    color: rgba(var(--color-stubbornBlue), 1);
+}
+
+.processGrid {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
+
+.processHeader h2 {
+    margin-bottom: 2rem;
+}
+
+.processHeader p {
+    color: rgba(var(--color-stubbornWhite), 0.7);
+}
+
+.processGridItem {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(var(--color-stubbornBlue), 0.2);
+    padding: 2rem;
+    border-radius: 1rem;
+    background-color: rgba(var(--color-stubbornWhite), 0.05);
+    backdrop-filter: blur(1rem);
+    -webkit-backdrop-filter: blur(1rem);
+    gap: 1rem;
+}
+
+.processGridItem h3 {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(var(--color-stubbornWhite), 0.5);
+}
+
+.processGridItem p {
+    color: rgba(var(--color-stubbornWhite), 0.7);
+    width: 100%;
+}
+
+@media (min-width: 1200px) {
+    .processGrid {
+        flex-direction: row;
+    }
+
+    .processHeader p {
+        width: 80%;
+    }
+}

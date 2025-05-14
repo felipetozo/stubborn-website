@@ -10,6 +10,7 @@
     align-items: center;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     gap: 3rem;
+    max-width: 1600px;
 }
 
 .HeroSectionContainer {

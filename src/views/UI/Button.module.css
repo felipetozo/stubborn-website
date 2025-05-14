@@ -25,9 +25,9 @@
 }
 
 .primary:hover:not(disabled) {
-    background-color: rgba(var(--color-stubbornBlue), 0.5);
-    border: 1px solid rgba(var(--color-stubbornBlue), 1);
-    color: rgba(var(--color-stubbornWhite), 1);
+    background-color: rgba(var(--color-stubbornWhite), 1);
+    border: 1px solid rgba(var(--color-stubbornWhite), 1);
+    color: rgba(var(--color-stubbornBlack), 1);
 }
 
 .secondary {
