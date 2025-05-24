@@ -1,8 +1,10 @@
 import React from 'react';
+import Head from 'next/head';
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import GoogleAds from '@/integrations/GoogleAds';
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-spaceGrotesk",
@@ -25,10 +27,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt">
-      <body
-        className={`${spaceGrotesk.variable} ${inter.variable} antialiased`}
-      >
+    <html lang="PT-BR">
+      <Head>
+        <GoogleAds />
+      </Head>
+      <body className={`${spaceGrotesk.variable} ${inter.variable}`}>
         {children}
         <Analytics />
       </body>
