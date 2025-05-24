@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
-import GoogleAds from '@/integrations/TrackingScripts';
+import TrackingScripts from '@/integrations/TrackingScripts';
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-spaceGrotesk",
