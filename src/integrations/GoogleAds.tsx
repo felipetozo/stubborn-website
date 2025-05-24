@@ -3,7 +3,7 @@ import React from 'react';
 
 const GoogleAds: React.FC = () => {
   return (
-    <Head>
+    <div>
       <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17110235811">
       </script>
       <script
@@ -16,7 +16,7 @@ const GoogleAds: React.FC = () => {
           `,
         }}
       />
-    </Head>
+    </div>
   );
 };
 
