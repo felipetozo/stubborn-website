@@ -1,22 +1,20 @@
 import Head from 'next/head';
 import React from 'react';
 
-const GoogleAnalytics: React.FC = () => {
+const GoogleAds: React.FC = () => {
   return (
     <Head>
-      <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'YOUR_GA_ID');
-          `,
-        }}
-      />
+      <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17110235811">
+        </script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-17110235811');
+        </script>
     </Head>
   );
 };
 
-export default GoogleAnalytics;
+export default GoogleAds;

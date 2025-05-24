@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
-import GoogleAds from '@/integrations/GoogleAds';
+import GoogleAds from '@/integrations/TrackingScripts';
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-spaceGrotesk",
@@ -23,13 +23,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="PT-BR">
       <Head>
-        <GoogleAds />
+        <TrackingScripts />
       </Head>
       <body className={`${spaceGrotesk.variable} ${inter.variable}`}>
         {children}
