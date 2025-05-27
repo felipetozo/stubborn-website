@@ -26,8 +26,8 @@ function NavBar() {
               <Image
                 src="/img/stubborn-logotipo.svg"
                 alt="stubborn criação de sites"
-                width={160}
-                height={30}
+                width={100}
+                height={20}
               />
             </Link>
           </div>
@@ -35,22 +35,22 @@ function NavBar() {
             <ul>
               <li>
                 <Button variant="secondary" size="medium">
-                  <span>Home</span>
+                  <span>Início</span>
                 </Button>
               </li>
               <li>
                 <Button variant="secondary" size="medium">
-                  <span>About</span>
+                  <span>Sobre</span>
                 </Button>
               </li>
               <li>
                 <Button variant="secondary" size="medium">
-                  <span>Work</span>
+                  <span>Portfolio</span>
                 </Button>
               </li>
               <li>
                 <Button variant="secondary" size="medium">
-                  <span>Contact</span>
+                  <span>Contato</span>
                 </Button>
               </li>
             </ul>

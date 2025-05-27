@@ -9,24 +9,25 @@
 }
 
 .ManifestoWrapper {
-    width: 40%;
+    width: 90%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 5rem;
 }
 
-.ManifestoContent {
+.ManifestoContent span {
     color: rgba(var(--color-stubbornBlack), 0.3);
-    font-weight: 600;
+    font-weight: 400;
     font-size: 2rem;
     line-height: 1.2;
+    word-spacing: -2%;
 }
 
 .CraftingMotto p {
     font-family: var(--font-spaceGrotesk);
     color: rgba(var(--color-stubbornBlack), 1);
-    font-size: 1.6rem;
+    font-size: 1.25rem;
     display: flex;
     width: 100%;
     height: 100%;
@@ -43,7 +44,16 @@
 }
 
 .ManifestoLogo {
-    display: flex;
-    justify-content: center;
-    filter: brightness(0%);
+    filter: brightness(0);
+    margin: 0 auto;
+}
+
+@media (min-width:1200px) {
+    .ManifestoWrapper {
+        width: 40%;
+    }
+
+    .CraftingMotto p {
+        font-size: 1.5rem;
+    }
 }

@@ -11,7 +11,8 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 50%;
+    width: 90%;
+    gap: 3rem;
     margin: 0 auto;
     max-width: 1600px;
     padding: 1rem 1rem 1rem 1rem;
@@ -32,6 +33,10 @@
 }
 
 @media (min-width: 1200px) {
+
+    .navBarWrapper {
+        width: 60%;
+    }
 
     .navBarItems {
         display: block;

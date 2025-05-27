@@ -5,13 +5,19 @@
 }
 
 .processWrapper {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     max-width: 1600px;
     text-align: center;
     display: flex;
     flex-direction: column;
     gap: 5rem;
+    background-color: rgba(var(--color-stubbornWhite), 0.02);
+    border: 1px solid rgba(var(--color-stubbornWhite), 0.05);
+    border-radius: 2rem;
+    backdrop-filter: blur(1rem);
+    -webkit-backdrop-filter: blur(1rem);
+    padding: 1rem;
 }
 
 .blueText {
@@ -135,5 +141,10 @@
 
     .buttonsFlex {
         flex-direction: row;
+    }
+
+    .processWrapper {
+        width: 80%;
+        padding: 5rem;
     }
 }
