@@ -44,6 +44,19 @@
     color: rgba(var(--color-stubbornBlue), 1);
 }
 
+.black {
+    background-color: rgba(var(--color-stubbornBlack), 0.85);
+    border: 1px solid rgba(var(--color-stubbornBlack), 0.95);
+    color: rgba(var(--color-stubbornWhite), 0.85);
+}
+
+.black:hover {
+    background-color: rgba(var(--color-stubbornBlack), 1);
+    border: 1px solid rgba(var(--color-stubbornBlue), 0.5);
+    color: rgba(var(--color-stubbornWhite), 1);
+}
+
+.black:hover span,
 .secondary:hover span,
 .primary:hover span {
     animation: btnAnimation 0.2s ease-in-out forwards;

@@ -1,6 +1,7 @@
 .footerSection {
     width: 100%;
-    padding: 5rem 0;
+    background-color: rgba(var(--color-stubbornWhite), 1);
+    padding: 5rem 0 0 0;
 }
 
 .footerWrapper {
@@ -22,14 +23,25 @@
     width: 100%;
 }
 
+.footerContent h5 {
+    color: rgba(var(--color-stubbornBlack), 1);
+}
+
 .footerContent p {
-    color: rgba(var(--color-stubbornWhite), 0.65);
+    color: rgba(var(--color-stubbornBlack), 0.65);
 }
 
 .footerCNPJ p {
     padding-top: 3rem;
     font-size: 0.8rem;
-    color: rgba(var(--color-stubbornWhite), 0.65);
+    text-align: center;
+    color: rgba(var(--color-stubbornBlack), 0.65);
+}
+
+.footerCNPJ img {
+    filter: brightness(95%);
+    width: 100%;
+    margin: 0 auto;
 }
 
 @media (min-width: 1200px) {

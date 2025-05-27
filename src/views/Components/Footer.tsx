@@ -128,7 +128,7 @@ const Footer: React.FC<FooterProps> = ({ formData: externalFormData, formErrors:
                 />
               </div>
               <div className={styles.cadastroFormFields}>
-                <Button variant="primary" size="medium" type="submit">
+                <Button variant="black" size="medium" type="submit">
                   <span>Enviar solicitação</span>
                 </Button>
               </div>
