@@ -31,7 +31,12 @@ interface FooterProps {
   handleSubmit?: (event: React.FormEvent) => void;
 }
 
-const Footer: React.FC<FooterProps> = ({ formData: externalFormData, formErrors: externalFormErrors, handleChange: externalHandleChange, handleSubmit: externalHandleSubmit }) => {
+const Footer: React.FC<FooterProps> = ({
+  formData: externalFormData,
+  formErrors: externalFormErrors,
+  handleChange: externalHandleChange,
+  handleSubmit: externalHandleSubmit
+}) => {
   const contato = 'Contato';
   const [formData, setFormData] = useState<FormData>({
     nomeCompleto: '',
@@ -41,10 +46,25 @@ const Footer: React.FC<FooterProps> = ({ formData: externalFormData, formErrors:
     termos: false,
   });
   const [formErrors, setFormErrors] = useState<FormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type } = e.target;
+    const fieldValue = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
+
+    setFormData((prev) => ({ ...prev, [name]: fieldValue }));
+
+    // Limpar erro do campo quando usuário começar a digitar
+    if (formErrors[name as keyof FormErrors]) {
+      setFormErrors(prev => ({ ...prev, [name]: undefined }));
+    }
+
+    // Limpar mensagem de submit quando usuário modificar o formulário
+    if (submitMessage) {
+      setSubmitMessage(null);
+    }
+
     if (externalHandleChange) {
       externalHandleChange(e);
     }
@@ -52,26 +72,97 @@ const Footer: React.FC<FooterProps> = ({ formData: externalFormData, formErrors:
 
   const validateForm = (): FormErrors => {
     const errors: FormErrors = {};
-    if (!formData.nomeCompleto) errors.nomeCompleto = 'Nome completo é obrigatório';
-    if (!formData.email) errors.email = 'E-mail é obrigatório';
-    if (!formData.whatsapp) errors.whatsapp = 'Whatsapp é obrigatório';
-    if (!formData.assuntoDesejado) errors.assuntoDesejado = 'Assunto é obrigatório';
+    const currentFormData = externalFormData || formData;
+
+    if (!currentFormData.nomeCompleto?.trim()) {
+      errors.nomeCompleto = 'Nome completo é obrigatório';
+    }
+    if (!currentFormData.email?.trim()) {
+      errors.email = 'E-mail é obrigatório';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(currentFormData.email)) {
+      errors.email = 'E-mail inválido';
+    }
+    if (!currentFormData.whatsapp?.trim()) {
+      errors.whatsapp = 'WhatsApp é obrigatório';
+    }
+    if (!currentFormData.assuntoDesejado?.trim()) {
+      errors.assuntoDesejado = 'Assunto é obrigatório';
+    }
+
     return errors;
   };
 
-  const handleFormSubmit = (event: FormEvent) => {
+  const handleFormSubmit = async (event: FormEvent) => {
     event.preventDefault();
+
     const errors = validateForm();
     setFormErrors(errors);
 
-    if (Object.keys(errors).length === 0) {
-      if (typeof window !== 'undefined' && window.gtag_report_conversion) {
-        window.gtag_report_conversion();
+    if (Object.keys(errors).length > 0) {
+      setSubmitMessage({
+        type: 'error',
+        text: 'Por favor, corrija os erros no formulário.'
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitMessage(null);
+
+    try {
+      const dataToSubmit = externalFormData || formData;
+
+      const response = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataToSubmit),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Conversão do Google Ads se disponível
+        if (typeof window !== 'undefined' && window.gtag_report_conversion) {
+          window.gtag_report_conversion();
+        }
+
+        setSubmitMessage({
+          type: 'success',
+          text: result.message
+        });
+
+        // Limpar formulário após sucesso
+        if (!externalFormData) {
+          setFormData({
+            nomeCompleto: '',
+            email: '',
+            whatsapp: '',
+            assuntoDesejado: '',
+            termos: false,
+          });
+        }
+
+        console.log('Form submitted successfully:', dataToSubmit);
+
+        if (externalHandleSubmit) {
+          externalHandleSubmit(event);
+        }
+      } else {
+        setSubmitMessage({
+          type: 'error',
+          text: result.message || 'Erro ao enviar formulário. Tente novamente.'
+        });
       }
-      console.log('Form submitted:', formData);
-      if (externalHandleSubmit) {
-        externalHandleSubmit(event);
-      }
+    } catch (error) {
+      console.error('Erro ao enviar formulário:', error);
+      setSubmitMessage({
+        type: 'error',
+        text: 'Erro de conexão. Verifique sua internet e tente novamente.'
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -102,7 +193,7 @@ const Footer: React.FC<FooterProps> = ({ formData: externalFormData, formErrors:
                 <FormField
                   id="email"
                   label="E-mail"
-                  type="text"
+                  type="email"
                   value={externalFormData?.email ?? formData.email}
                   onChange={handleChange}
                   placeholder="Introduza seu e-mail"
@@ -127,9 +218,24 @@ const Footer: React.FC<FooterProps> = ({ formData: externalFormData, formErrors:
                   error={externalFormErrors?.assuntoDesejado ?? formErrors.assuntoDesejado}
                 />
               </div>
+
+              {/* Mensagem de sucesso/erro */}
+              {submitMessage && (
+                <div className={`${styles.submitMessage} ${styles[submitMessage.type]}`}>
+                  {submitMessage.text}
+                </div>
+              )}
+
               <div className={styles.cadastroFormFields}>
-                <Button variant="black" size="medium" type="submit">
-                  <span>Enviar solicitação</span>
+                <Button
+                  variant="black"
+                  size="medium"
+                  type="submit"
+                  disabled={isSubmitting}
+                >
+                  <span>
+                    {isSubmitting ? 'Enviando...' : 'Enviar solicitação'}
+                  </span>
                 </Button>
               </div>
             </form>

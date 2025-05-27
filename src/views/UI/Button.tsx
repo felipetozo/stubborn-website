@@ -1,6 +1,6 @@
 import styles from './Button.module.css';
 
-type ButtonVariant = 'primary' | 'secondary';
+type ButtonVariant = 'primary' | 'secondary' | 'black';
 type ButtonSize = 'small' | 'medium' | 'large';
 
 interface ButtonProps {
