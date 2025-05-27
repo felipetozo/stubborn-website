@@ -45,7 +45,7 @@ function Work() {
                         </div>
                         <div className={styles.workGridItem}>
                             <Link
-                                href="https://www.metallaran.com.br"
+                                href="https://www.talmak.com.br"
                                 target="_blank"
                             >
                                 <Image
@@ -63,13 +63,13 @@ function Work() {
                                             className={styles.blueText}
                                         />
                                     </span>
-                                    Metal Laran - webSite
+                                    Talmak Solutions - webSite
                                 </div>
                             </Link>
                         </div>
                         <div className={styles.workGridItem}>
                             <Link
-                                href="https://www.metallaran.com.br"
+                                href="https://www.easycorten.com.br"
                                 target="_blank"
                             >
                                 <Image
@@ -87,13 +87,13 @@ function Work() {
                                             className={styles.blueText}
                                         />
                                     </span>
-                                    Metal Laran - webSite
+                                    Easy Corten - webSite / eCommerce
                                 </div>
                             </Link>
                         </div>
                         <div className={styles.workGridItem}>
                             <Link
-                                href="https://www.metallaran.com.br"
+                                href="https://www.palpitagem.com.br"
                                 target="_blank"
                             >
                                 <Image
@@ -111,7 +111,7 @@ function Work() {
                                             className={styles.blueText}
                                         />
                                     </span>
-                                    Metal Laran - webSite
+                                    Palpitagem FC - webSite
                                 </div>
                             </Link>
                         </div>

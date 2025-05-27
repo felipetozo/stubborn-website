@@ -11,6 +11,7 @@
     gap: 0.5rem;
     outline: none;
     overflow: hidden;
+    white-space: nowrap;
 }
 
 .button.disabled {

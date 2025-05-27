@@ -2,7 +2,6 @@ import styles from '@/views/Components/Hero.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import Button from '@/views/UI/Button';
-import { CircleArrowOutUpRight } from 'lucide-react';
 
 function Hero() {
     return (
@@ -17,13 +16,10 @@ function Hero() {
                             Sem pacotes prontos, sem amarras. Seu ecossistema digital será seguro, escalável e preparado para acompanhar cada etapa do crescimento da sua empresa.
                         </p>
                         <div className={styles.buttonsFlex}>
-                            <Link href="https://wa.me/5545991584114">
+                            <Link href="https://wa.me/5545991584114" target="_blank">
                                 <Button variant="primary" size="medium">
                                     <span>
                                         Solicitar orçamento
-                                    </span>
-                                    <span>
-                                        <CircleArrowOutUpRight size={12} />
                                     </span>
                                 </Button>
                             </Link>

@@ -6,13 +6,13 @@
 .footerWrapper {
     width: 80%;
     margin: 0 auto;
+    max-width: 1600px;
 }
 
 .footerContainer {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    max-width: 1600px;
 }
 
 .footerContent {

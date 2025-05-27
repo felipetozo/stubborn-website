@@ -1,7 +1,7 @@
 import styles from '@/views/Components/Process.module.css';
 import Link from 'next/link';
 import Button from '@/views/UI/Button';
-import { ScanSearch, Goal, Code, CircleArrowOutUpRight } from 'lucide-react';
+import { ScanSearch, Goal, Code } from 'lucide-react';
 
 function Process() {
     return (
@@ -103,13 +103,10 @@ function Process() {
                         </div>
                     </div>
                     <div className={styles.buttonsFlex}>
-                        <Link href="https://wa.me/5545991584114">
+                        <Link href="https://wa.me/5545991584114" target="_blank">
                             <Button variant="primary" size="medium">
                                 <span>
                                     Solicitar orçamento
-                                </span>
-                                <span>
-                                    <CircleArrowOutUpRight size={12} />
                                 </span>
                             </Button>
                         </Link>
