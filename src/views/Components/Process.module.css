@@ -8,32 +8,72 @@
     width: 80%;
     margin: 0 auto;
     max-width: 1600px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
 }
 
 .blueText {
     color: rgba(var(--color-stubbornBlue), 1);
 }
 
-.processGrid {
-    margin-top: 5rem;
+
+
+.processHeader {
     display: flex;
     flex-direction: column;
-    gap: 5rem;
+    gap: 1rem;
 }
 
 .processHeader h2 {
     margin-bottom: 2rem;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .processHeader p {
     color: rgba(var(--color-stubbornWhite), 0.7);
+    width: 75%;
+    margin: 0 auto;
+}
+
+.processServices ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    justify-content: center;
+}
+
+.processServices ul li {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0 auto;
+    background-color: rgba(var(--color-stubbornBlue), 0.1);
+    color: rgba(var(--color-stubbornBlue), 0.85);
+    border: 1px solid rgba(var(--color-stubbornBlue), 0.25);
+    padding: 0.5rem 1rem;
+    line-height: 1;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+}
+
+.processGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    text-align: center;
 }
 
 .processGridItem {
     display: flex;
     flex-direction: column;
+    text-align: left;
     border: 1px solid rgba(var(--color-stubbornWhite), 0.1);
     padding: 2rem;
+    width: 100%;
     border-radius: 1rem;
     background-color: rgba(var(--color-stubbornWhite), 0.05);
     backdrop-filter: blur(1rem);
@@ -41,14 +81,46 @@
     gap: 1rem;
 }
 
-.processGridItem h3 {
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(var(--color-stubbornWhite), 0.5);
+.buttonsFlex {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
 }
 
-.processGridItem p {
-    color: rgba(var(--color-stubbornWhite), 0.7);
-    width: 100%;
+.vagasDisponiveis {
+    display: flex;
+    line-height: 1;
+    flex-direction: row;
+    background-color: rgba(var(--color-stubbornGreen), 0.1);
+    color: rgba(var(--color-stubbornGreen), 1);
+    border: 1px solid rgba(var(--color-stubbornGreen), 0.15);
+    border-radius: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    height: 3rem;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.vagasDotBack {
+    content: '';
+    width: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1rem;
+    border-radius: 2rem;
+    background-color: rgba(var(--color-stubbornGreen), 0.1);
+}
+
+.vagasDot {
+    content: '';
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 10rem;
+    background-color: rgba(var(--color-stubbornGreen), 1);
 }
 
 @media (min-width: 1200px) {
@@ -58,5 +130,9 @@
 
     .processHeader p {
         width: 80%;
+    }
+
+    .buttonsFlex {
+        flex-direction: row;
     }
 }

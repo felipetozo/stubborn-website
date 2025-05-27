@@ -1,5 +1,7 @@
 import styles from '@/views/Components/Process.module.css';
-import { ScanSearch, Goal, Code } from 'lucide-react';
+import Link from 'next/link';
+import Button from '@/views/UI/Button';
+import { ScanSearch, Goal, Code, CircleArrowOutUpRight } from 'lucide-react';
 
 function Process() {
     return (
@@ -8,10 +10,59 @@ function Process() {
                 <div className={styles.processWrapper}>
                     <div className={styles.processHeader}>
                         <h2>
-                            Crafting long <span className={styles.blueText}>-</span> lasting experiences
+                            Mais que serviços, uma parceria estratégica
+                            para evoluir o digital da sua empresa
                         </h2>
                         <p>
-                            Mais do que um site. Uma operação digital completa - feita para durar. Mensalidade fixa. Sem amarras, sem fórmulas prontas. Você traz o cenário, nós desenhamos o plano: Site, CRM, integrações, notificações, coleta de dados, automações, dashboard - tudo no seu ritmo, no tempo certo, com visão de longo prazo. É simples: Você continua no controle. Nós garantimos que tudo funcione, evolua e escale.
+                            Somos mais que uma simlpes prestação de serviços: somos sua equipe digital estendida, focada
+                            em evolução contínua. Cuidamos da sua estrutura online com inteligência e consistência, desde
+                            sites até CRM's, até dashboard e integrações, para que sua empresa escale com liberdade,
+                            obtendo resultados sustentáveis e livre de retrabalho.
+                        </p>
+                    </div>
+                    <div className={styles.processServices}>
+                        <ul>
+                            <li>
+                                Websites
+                            </li>
+                            <li>
+                                Landing Pages
+                            </li>
+                            <li>
+                                Web App's
+                            </li>
+                            <li>
+                                Lojas Online / E-Commerce
+                            </li>
+                            <li>
+                                Portais Internos
+                            </li>
+                            <li>
+                                Newsletters
+                            </li>
+                            <li>
+                                Sistemas de Agendamento
+                            </li>
+                            <li>
+                                Buscador Inteligente com IA
+                            </li>
+                            <li>
+                                Integrações e API's
+                            </li>
+                            <li>
+                                Chatbot com IA
+                            </li>
+                            <li>
+                                Sistemas de Delivery
+                            </li>
+                        </ul>
+                    </div>
+                    <div className={styles.processHeader}>
+                        <p>
+                            Nosso processo é transparente e colaborativo, focado em entregas contínuas que impulsionam
+                            sua evolução digital. Do diagnóstico inicial e planejamento estratégico, passando pelo design e
+                            desenvolvimento ágil das soluções, até o lançamento e acompanhamento constante, garantimos
+                            que cada passo agregue valor real e prepare seu negócio para o futuro.
                         </p>
                     </div>
                     <div className={styles.processGrid}>
@@ -23,26 +74,8 @@ function Process() {
                                 className={styles.blueText}
                             />
                             <h3>
-                                Análise inicial
+                                Análise Inicial e Planejamento Estratégico
                             </h3>
-                            <p>
-                                Easily adapt to changes and scale your operations with our flexible infrastructure, designed to support your business growth and evolving requirements. Core features that set us apart from the competition.
-                            </p>
-
-                        </div>
-                        <div className={styles.processGridItem}>
-                            <Goal
-                                width={60}
-                                height={60}
-                                strokeWidth={1}
-                                className={styles.blueText}
-                            />
-                            <h3>
-                                Planejamento das ações
-                            </h3>
-                            <p>
-                                Easily adapt to changes and scale your operations with our flexible infrastructure, designed to support your business growth and evolving requirements. Core features that set us apart from the competition.
-                            </p>
 
                         </div>
                         <div className={styles.processGridItem}>
@@ -53,12 +86,41 @@ function Process() {
                                 className={styles.blueText}
                             />
                             <h3>
-                                Desenvolvimento
+                                Design e Desenvolvimento
                             </h3>
-                            <p>
-                                Easily adapt to changes and scale your operations with our flexible infrastructure, designed to support your business growth and evolving requirements. Core features that set us apart from the competition.
-                            </p>
 
+                        </div>
+                        <div className={styles.processGridItem}>
+                            <Goal
+                                width={60}
+                                height={60}
+                                strokeWidth={1}
+                                className={styles.blueText}
+                            />
+                            <h3>
+                                Lançamento e Revisões
+                            </h3>
+                        </div>
+                    </div>
+                    <div className={styles.buttonsFlex}>
+                        <Link href="https://wa.me/5545991584114">
+                            <Button variant="primary" size="medium">
+                                <span>
+                                    Solicitar orçamento
+                                </span>
+                                <span>
+                                    <CircleArrowOutUpRight size={12} />
+                                </span>
+                            </Button>
+                        </Link>
+                        <div className={styles.vagasDisponiveis}>
+                            <span className={styles.vagasDotBack}>
+                                <span className={styles.vagasDot}>
+                                </span>
+                            </span>
+                            <span>
+                                2 vagas disponíveis!
+                            </span>
                         </div>
                     </div>
                 </div>

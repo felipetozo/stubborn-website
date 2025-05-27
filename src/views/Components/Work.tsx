@@ -10,10 +10,12 @@ function Work() {
                 <div className={styles.workWrapper}>
                     <div className={styles.workHeader}>
                         <h2>
-                            Crafting long <span className={styles.blueText}>-</span> lasting experiences
+                            Mais do que projetos, ativos vivos. Pensados
+                            para evoluir com cada empresa.
                         </h2>
                         <p>
-                            Mais do que um site. Uma operação digital completa - feita para durar. Mensalidade fixa. Sem amarras, sem fórmulas prontas. Você traz o cenário, nós desenhamos o plano: Site, CRM, integrações, notificações, coleta de dados, automações, dashboard - tudo no seu ritmo, no tempo certo, com visão de longo prazo. É simples: Você continua no controle. Nós garantimos que tudo funcione, evolua e escale.
+                            Nossa entrega não é um fim, mas sempre um começo. Acreditamos em soluções que crescem
+                            junto com a sua empresa - cada entrega é parte da sua função digital.
                         </p>
                     </div>
                     <div className={styles.workGrid}>

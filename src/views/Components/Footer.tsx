@@ -5,6 +5,7 @@ import Link from 'next/link';
 import FormField from '@/views/UI/Form/FormField';
 import FormSelection from '@/views/UI/Form/FormSelection';
 import Button from '@/views/UI/Button';
+import Image from 'next/image';
 import { FormEvent, useState } from 'react';
 
 interface FormData {
@@ -138,6 +139,12 @@ const Footer: React.FC<FooterProps> = ({ formData: externalFormData, formErrors:
           <p>
             2025® stubborn. Todos direitos reservados. CNPJ: 35.446.994/0001-59
           </p>
+          <Image
+            src="/img/stubborn-logotipo.svg"
+            alt="stubborn criação de sites"
+            width={160}
+            height={30}
+          />
         </div>
       </div>
     </section>

@@ -7,6 +7,12 @@
     width: 80%;
     margin: 0 auto;
     max-width: 1600px;
+    text-align: center;
+}
+
+.workHeader {
+    width: 80%;
+    margin: 0 auto;
 }
 
 .workHeader h2 {
@@ -73,10 +79,6 @@
 @media (min-width: 1200px) {
     .workGrid {
         flex-direction: row;
-    }
-
-    .workHeader p {
-        width: 80%;
     }
 
     .workGridItem {

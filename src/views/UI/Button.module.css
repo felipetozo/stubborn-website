@@ -8,6 +8,7 @@
     cursor: pointer;
     transition: all 0.2s ease-in;
     border: none;
+    gap: 0.5rem;
     outline: none;
     overflow: hidden;
 }
@@ -15,11 +16,6 @@
 .button.disabled {
     opacity: 0.4;
     cursor: not-allowed;
-}
-
-.button img {
-    width: 1rem;
-    height: 1rem;
 }
 
 /* Variants */

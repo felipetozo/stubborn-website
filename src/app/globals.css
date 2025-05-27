@@ -8,6 +8,7 @@
   --color-stubbornBlack: 7, 9, 12;
   --color-Black: 0, 0, 0;
   --color-stubbornBlue: 77, 91, 252;
+  --color-stubbornGreen: 0, 173, 26;
 }
 
 @theme inline {

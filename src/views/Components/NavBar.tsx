@@ -4,7 +4,7 @@ import styles from '@/views/Components/NavBar.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import Button from '@/views/UI/Button';
-import { ArrowRight } from 'lucide-react';
+import { CircleArrowOutUpRight } from 'lucide-react';
 
 function NavBar() {
   const handleConversionClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -57,13 +57,13 @@ function NavBar() {
             </ul>
           </div>
           <div className={styles.navBarButton}>
-            <Link href="#Contato" onClick={handleConversionClick}>
+            <Link href="https://wa.me/5545991584114">
               <Button variant="primary" size="medium">
                 <span>
-                  Solicitar contato
+                  Solicitar orçamento
                 </span>
                 <span>
-                  <ArrowRight />
+                  <CircleArrowOutUpRight size={12} />
                 </span>
               </Button>
             </Link>

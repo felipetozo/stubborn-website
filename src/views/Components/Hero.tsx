@@ -2,7 +2,7 @@ import styles from '@/views/Components/Hero.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import Button from '@/views/UI/Button';
-import { ArrowRight } from 'lucide-react';
+import { CircleArrowOutUpRight } from 'lucide-react';
 
 function Hero() {
     return (
@@ -17,19 +17,14 @@ function Hero() {
                             Sem pacotes prontos, sem amarras. Seu ecossistema digital será seguro, escalável e preparado para acompanhar cada etapa do crescimento da sua empresa.
                         </p>
                         <div className={styles.buttonsFlex}>
-                            <Link href="#Contato">
+                            <Link href="https://wa.me/5545991584114">
                                 <Button variant="primary" size="medium">
                                     <span>
                                         Solicitar orçamento
                                     </span>
                                     <span>
-                                        <ArrowRight />
+                                        <CircleArrowOutUpRight size={12} />
                                     </span>
-                                </Button>
-                            </Link>
-                            <Link href="#Trabalhos">
-                                <Button variant="secondary" size="medium">
-                                    <span>Conheça nossos trabalhos</span>
                                 </Button>
                             </Link>
                         </div>
