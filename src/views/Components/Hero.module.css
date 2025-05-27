@@ -1,16 +1,17 @@
 .HeroSection {
     width: 100%;
-    padding: 10rem 0;
+    padding: 5rem 0;
 }
 
 .HeroSectionWrapper {
     width: 80%;
     margin: 0 auto;
-    display: grid;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     gap: 3rem;
     max-width: 1600px;
+    text-align: center;
 }
 
 .HeroSectionContainer {
@@ -30,12 +31,12 @@
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    margin: 0 auto;
     align-items: center;
 }
 
 @media (min-width: 1200px) {
     .HeroSectionWrapper {
-        width: 80%;
-        flex-direction: row;
+        width: 75%;
     }
 }

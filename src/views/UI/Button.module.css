@@ -17,6 +17,11 @@
     cursor: not-allowed;
 }
 
+.button img {
+    width: 1rem;
+    height: 1rem;
+}
+
 /* Variants */
 .primary {
     background-color: rgba(var(--color-stubbornWhite), 0.8);

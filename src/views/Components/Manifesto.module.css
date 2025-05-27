@@ -1,0 +1,48 @@
+/* ========================================= */
+/* Estilos para a seção Manifesto            */
+/* ========================================= */
+
+.ManifestoSection {
+    width: 100%;
+    background-color: rgba(var(--color-stubbornWhite), 1);
+    padding: 10rem 0;
+}
+
+.ManifestoWrapper {
+    width: 40%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
+
+.ManifestoContent {
+    color: rgba(var(--color-stubbornBlack), 0.3);
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 1.2;
+}
+
+.CraftingMotto p {
+    font-family: var(--font-spaceGrotesk);
+    color: rgba(var(--color-stubbornBlack), 1);
+    font-size: 1.6rem;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.CraftingMottoLine {
+    content: '';
+    background-color: rgba(var(--color-stubbornBlue), 1);
+    height: 2.5px;
+    width: 2rem;
+    margin: 0 1rem;
+}
+
+.ManifestoLogo {
+    display: flex;
+    justify-content: center;
+}

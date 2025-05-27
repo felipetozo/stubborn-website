@@ -2,6 +2,7 @@ import styles from '@/views/Components/Hero.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import Button from '@/views/UI/Button';
+import { ArrowRight } from 'lucide-react';
 
 function Hero() {
     return (
@@ -10,15 +11,20 @@ function Hero() {
                 <div className={styles.HeroSectionWrapper}>
                     <div className={styles.HeroSectionContainer}>
                         <h1>
-                            Sua presença digital, evoluindo com inteligência e liberdade.
+                            O ecossistema digital da sua empresa, em constante evolução.
                         </h1>
                         <p>
-                            Assine uma solução viva, que cresce com sua empresa. Em vez de projetos isolados, oferecemos visão de longo prazo, entregas mensais e evolução constante - tudo no seu tempo, com total liberdade.
+                            Sem pacotes prontos, sem amarras. Seu ecossistema digital será seguro, escalável e preparado para acompanhar cada etapa do crescimento da sua empresa.
                         </p>
                         <div className={styles.buttonsFlex}>
                             <Link href="#Contato">
                                 <Button variant="primary" size="medium">
-                                    <span>Solicitar contato</span>
+                                    <span>
+                                        Solicitar orçamento
+                                    </span>
+                                    <span>
+                                        <ArrowRight />
+                                    </span>
                                 </Button>
                             </Link>
                             <Link href="#Trabalhos">
