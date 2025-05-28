@@ -21,6 +21,10 @@ interface FormData {
 
 export async function POST(request: NextRequest) {
     try {
+        const formDataToInsert: Omit<FormData, 'id' | 'timestamp' | 'status'> = { // Adicione 'status' aqui se for padrao
+            // ... seus campos existentes
+            // status: 'Primeiro contato', // Adicione esta linha
+        };
         const body = await request.json();
         const { nomeCompleto, email, whatsapp, assuntoDesejado, termos } = body;
 
