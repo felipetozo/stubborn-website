@@ -95,10 +95,14 @@ const Footer: React.FC<FooterProps> = ({
   const handleFormSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
+    console.log('=== DEBUG FORM SUBMIT ===');
+    console.log('Form data:', externalFormData || formData);
+
     const errors = validateForm();
     setFormErrors(errors);
 
     if (Object.keys(errors).length > 0) {
+      console.log('Validation errors:', errors);
       setSubmitMessage({
         type: 'error',
         text: 'Por favor, corrija os erros no formulário.'
@@ -111,6 +115,8 @@ const Footer: React.FC<FooterProps> = ({
 
     try {
       const dataToSubmit = externalFormData || formData;
+      console.log('Submitting data:', dataToSubmit);
+      console.log('API URL:', '/api/submit-form');
 
       const response = await fetch('/api/submit-form', {
         method: 'POST',
@@ -120,12 +126,22 @@ const Footer: React.FC<FooterProps> = ({
         body: JSON.stringify(dataToSubmit),
       });
 
+      console.log('Response status:', response.status);
+      console.log('Response ok:', response.ok);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Response error:', errorText);
+        throw new Error(`HTTP ${response.status}: ${errorText}`);
+      }
+
       const result = await response.json();
+      console.log('Response result:', result);
 
       if (result.success) {
         // Conversão do Google Ads se disponível
-        if (typeof window !== 'undefined' && window.gtag_report_conversion) {
-          window.gtag_report_conversion();
+        if (typeof window !== 'undefined' && (window as any).gtag_report_conversion) {
+          (window as any).gtag_report_conversion();
         }
 
         setSubmitMessage({
@@ -155,14 +171,19 @@ const Footer: React.FC<FooterProps> = ({
           text: result.message || 'Erro ao enviar formulário. Tente novamente.'
         });
       }
-    } catch (error) {
-      console.error('Erro ao enviar formulário:', error);
+    } catch (error: any) {
+      console.error('=== FETCH ERROR ===');
+      console.error('Error details:', error);
+      console.error('Error message:', error?.message);
+      console.error('Error stack:', error?.stack);
+
       setSubmitMessage({
         type: 'error',
         text: 'Erro de conexão. Verifique sua internet e tente novamente.'
       });
     } finally {
       setIsSubmitting(false);
+      console.log('=== END DEBUG ===');
     }
   };
 
