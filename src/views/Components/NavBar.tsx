@@ -35,22 +35,30 @@ function NavBar() {
             <ul>
               <li>
                 <Button variant="secondary" size="medium">
-                  <span>Início</span>
+                  <Link href="#inicio">
+                    <span>Início</span>
+                  </Link>
                 </Button>
               </li>
               <li>
                 <Button variant="secondary" size="medium">
-                  <span>Sobre</span>
+                  <Link href="#sobre">
+                    <span>Sobre</span>
+                  </Link>
                 </Button>
               </li>
               <li>
                 <Button variant="secondary" size="medium">
-                  <span>Portfolio</span>
+                  <Link href="#portfolio">
+                    <span>Portfolio</span>
+                  </Link>
                 </Button>
               </li>
               <li>
                 <Button variant="secondary" size="medium">
-                  <span>Contato</span>
+                  <Link href="#Contato">
+                    <span>Contato</span>
+                  </Link>
                 </Button>
               </li>
             </ul>
@@ -65,7 +73,7 @@ function NavBar() {
             </Link>
           </div>
         </div>
-      </nav>
+      </nav >
     </>
   );
 }

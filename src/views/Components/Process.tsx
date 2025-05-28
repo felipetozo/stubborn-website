@@ -1,12 +1,15 @@
+'use client'
+
 import styles from '@/views/Components/Process.module.css';
 import Link from 'next/link';
 import Button from '@/views/UI/Button';
 import { ScanSearch, Goal, Code } from 'lucide-react';
 
 function Process() {
+    const sobre = 'sobre';
     return (
         <>
-            <section className={styles.processSection}>
+            <section className={styles.processSection} id={sobre}>
                 <div className={styles.processWrapper}>
                     <div className={styles.processHeader}>
                         <h2>

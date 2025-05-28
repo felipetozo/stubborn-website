@@ -1,12 +1,17 @@
+'use client'
+
 import styles from '@/views/Components/Work.module.css';
 import { ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 function Work() {
+
+    const portfolio = 'portfolio'
+
     return (
         <>
-            <section className={styles.workSection}>
+            <section className={styles.workSection} id={portfolio}>
                 <div className={styles.workWrapper}>
                     <div className={styles.workHeader}>
                         <h2>

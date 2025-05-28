@@ -1,12 +1,15 @@
+'use client'
+
 import styles from '@/views/Components/Hero.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import Button from '@/views/UI/Button';
 
 function Hero() {
+    const inicio = 'inicio'
     return (
         <>
-            <section className={styles.HeroSection}>
+            <section className={styles.HeroSection} id={inicio}>
                 <div className={styles.HeroSectionWrapper}>
                     <div className={styles.HeroSectionContainer}>
                         <h1>
