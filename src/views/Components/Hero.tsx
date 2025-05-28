@@ -27,7 +27,7 @@ function Hero() {
                     </div>
                     <div className={styles.HeroSectionContainer}>
                         <Image
-                            src="/img/stubborn-portfolio-criacao-site-01.png"
+                            src="/img/stubborn-portfolio-criacao-site-01-Metal-Laran.png"
                             alt="stubborn criação de sites"
                             width={1000}
                             height={500}
