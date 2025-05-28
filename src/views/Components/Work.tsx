@@ -25,7 +25,7 @@ function Work() {
                                 target="_blank"
                             >
                                 <Image
-                                    src="/img/stubborn-portfolio-criacao-site-01.png"
+                                    src="/img/stubborn-portfolio-criacao-site-01-Metal-Laran.png"
                                     alt="stubborn criação de sites"
                                     width={1000}
                                     height={500}
@@ -49,7 +49,7 @@ function Work() {
                                 target="_blank"
                             >
                                 <Image
-                                    src="/img/stubborn-portfolio-criacao-site-01.png"
+                                    src="/img/stubborn-portfolio-criacao-site-02-Talmak.png"
                                     alt="stubborn criação de sites"
                                     width={1000}
                                     height={500}
@@ -73,7 +73,7 @@ function Work() {
                                 target="_blank"
                             >
                                 <Image
-                                    src="/img/stubborn-portfolio-criacao-site-01.png"
+                                    src="/img/stubborn-portfolio-criacao-site-03-EasyCorten.png"
                                     alt="stubborn criação de sites"
                                     width={1000}
                                     height={500}
@@ -97,7 +97,7 @@ function Work() {
                                 target="_blank"
                             >
                                 <Image
-                                    src="/img/stubborn-portfolio-criacao-site-01.png"
+                                    src="/img/stubborn-portfolio-criacao-site-04-Palpitagem.png"
                                     alt="stubborn criação de sites"
                                     width={1000}
                                     height={500}
