@@ -1,6 +1,6 @@
 // src/app/api/submit-form/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js'; // Importa o cliente Supabase
+import { createClient } from '@supabase/supabase-js';
 
 // Variáveis de ambiente, obtidas do .env.local (e depois do Vercel)
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
@@ -17,19 +17,23 @@ interface FormData {
     termos: boolean;
     timestamp?: string; // O timestamp será gerado pelo DB
     id?: string;        // O ID será gerado pelo DB
+    status?: string; // Adicione esta linha se você já adicionou a coluna 'status' no Supabase
 }
 
 export async function POST(request: NextRequest) {
     try {
-        const formDataToInsert: Omit<FormData, 'id' | 'timestamp' | 'status'> = { // Adicione 'status' aqui se for padrao
-            // ... seus campos existentes
-            // status: 'Primeiro contato', // Adicione esta linha
-        };
+        // Remova ESTE BLOCO de código:
+        // const formDataToInsert: Omit<FormData, 'id' | 'timestamp' | 'status'> = {
+        //     // ... seus campos existentes
+        //     // status: 'Primeiro contato', // Adicione esta linha
+        // };
+        // FIM DO BLOCO A SER REMOVIDO
+
         const body = await request.json();
         const { nomeCompleto, email, whatsapp, assuntoDesejado, termos } = body;
 
         // Validação básica dos campos obrigatórios
-        if (!nomeCompleto?.trim() || !email?.trim() || !whatsapp?.trim() || !assuntoDesejado?.trim()) {
+        if (!nomeCompleto?.trim() || !email?.trim() || !whatsapp?.trim() || !assuntoDesejado?.trim()) { // Corrigi !whatsapp?.trim()
             return NextResponse.json(
                 { success: false, message: 'Todos os campos são obrigatórios' },
                 { status: 400 }
@@ -45,21 +49,22 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Prepara os dados para inserção no Supabase.
-        // 'id' e 'timestamp' são omitidos pois serão gerados pelo banco de dados.
-        const formDataToInsert: Omit<FormData, 'id' | 'timestamp'> = {
+        // Esta é a ÚNICA declaração de formDataToInsert que deve existir
+        const formDataToInsert: Omit<FormData, 'id' | 'timestamp'> = { // Se você adicionou 'status' ao DB, remova-o daqui ou inclua ele aqui.
             nomeCompleto: nomeCompleto.trim(),
             email: email.trim().toLowerCase(),
             whatsapp: whatsapp.trim(),
             assuntoDesejado: assuntoDesejado.trim(),
             termos: Boolean(termos),
+            // Se você criou a coluna 'status' no DB, adicione aqui o valor inicial, por exemplo:
+            // status: 'Primeiro contato',
         };
 
-        // Insere os dados na tabela 'footer_form_submissions' do Supabase
+        // ... (restante do código permanece igual)
         const { data, error } = await supabase
-            .from('footer_form_submissions') // Nome da tabela que você criou no Supabase
+            .from('footer_form_submissions')
             .insert([formDataToInsert])
-            .select(); // Retorna os dados inseridos (opcional, mas útil para logs)
+            .select();
 
         if (error) {
             console.error('Erro ao salvar no Supabase:', error);
