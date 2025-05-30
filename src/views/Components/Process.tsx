@@ -106,13 +106,13 @@ function Process() {
                         </div>
                     </div>
                     <div className={styles.buttonsFlex}>
-                        <Link href="https://wa.me/5545991584114" target="_blank">
-                            <Button variant="primary" size="medium">
+                        <Button variant="primary" size="medium">
+                            <Link href="https://wa.me/5545991584114" target="_blank">
                                 <span>
                                     Solicitar orçamento
                                 </span>
-                            </Button>
-                        </Link>
+                            </Link>
+                        </Button>
                         <div className={styles.vagasDisponiveis}>
                             <span className={styles.vagasDotBack}>
                                 <span className={styles.vagasDot}>

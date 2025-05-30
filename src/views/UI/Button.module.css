@@ -56,9 +56,9 @@
     color: rgba(var(--color-stubbornWhite), 1);
 }
 
-.black:hover span,
-.secondary:hover span,
-.primary:hover span {
+.black:hover a,
+.secondary:hover a,
+.primary:hover a {
     animation: btnAnimation 0.2s ease-in-out forwards;
 }
 

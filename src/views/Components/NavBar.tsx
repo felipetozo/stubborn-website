@@ -64,13 +64,14 @@ function NavBar() {
             </ul>
           </div>
           <div className={styles.navBarButton}>
-            <Link href="https://wa.me/5545991584114" target="_blank">
-              <Button variant="primary" size="medium">
+
+            <Button variant="primary" size="medium">
+              <Link href="https://wa.me/5545991584114" target="_blank">
                 <span>
                   Solicitar orçamento
                 </span>
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         </div>
       </nav >
