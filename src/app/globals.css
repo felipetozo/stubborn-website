@@ -28,8 +28,13 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-  transition: all 0.2s ease;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+    scroll-behavior: smooth;
+}
+
+[id] {
+    scroll-margin-top: 10rem
 }
 
 body {
