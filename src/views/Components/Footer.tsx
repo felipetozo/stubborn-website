@@ -264,7 +264,7 @@ const Footer: React.FC<FooterProps> = ({
         </div>
         <div className={styles.footerCNPJ}>
           <p>
-            2025® stubborn. Todos direitos reservados. CNPJ: 35.446.994/0001-59
+            {new Date().getFullYear()}® stubborn. Todos direitos reservados. CNPJ: 35.446.994/0001-59
           </p>
           <Image
             src="/img/stubborn-logotipo.svg"
