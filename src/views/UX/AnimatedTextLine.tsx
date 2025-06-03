@@ -28,7 +28,6 @@ const AnimatedLetter = ({ char, index, totalChars, lineProgress }: AnimatedLette
             style={{
                 display: 'inline-block',
                 opacity: spring.opacity,
-                marginRight: char === ' ' ? '0.2rem' : '0',
             }}
         >
             {char}
@@ -107,7 +106,15 @@ function AnimatedLine({ text, isLastLine, className, shouldStart, onComplete }: 
         };
     }, [shouldStart, handleScroll]);
 
+    // Dividir o texto em palavras
+    const words = text ? text.split(' ') : [];
+
+    // Contar o total de caracteres (incluindo espaços) para calcular o progresso
     const letters = text ? text.split(/(?!$)/u) : [];
+    const totalChars = letters.length;
+
+    // Índice global para rastrear a posição de cada letra no texto completo
+    let charIndex = 0;
 
     return (
         <div
@@ -119,15 +126,35 @@ function AnimatedLine({ text, isLastLine, className, shouldStart, onComplete }: 
                 marginBottom: isLastLine ? '0' : '2.4rem',
             }}
         >
-            {letters.map((char, index) => (
-                <AnimatedLetter
-                    key={index}
-                    char={char}
-                    index={index}
-                    totalChars={letters.length}
-                    lineProgress={lineProgress}
-                />
-            ))}
+            {words.map((word, wordIndex) => {
+                const wordLetters = word.split(/(?!$)/u);
+                const wordElement = (
+                    <span
+                        key={wordIndex}
+                        style={{
+                            whiteSpace: 'nowrap', // Impede quebras dentro da palavra
+                            display: 'inline-block',
+                            marginRight: '0.2rem', // Espaço entre palavras
+                        }}
+                    >
+                        {wordLetters.map((char, letterIndex) => {
+                            const globalIndex = charIndex;
+                            charIndex++; // Incrementa o índice global
+                            return (
+                                <AnimatedLetter
+                                    key={`${wordIndex}-${letterIndex}`}
+                                    char={char}
+                                    index={globalIndex}
+                                    totalChars={totalChars}
+                                    lineProgress={lineProgress}
+                                />
+                            );
+                        })}
+                    </span>
+                );
+
+                return wordElement;
+            })}
         </div>
     );
 }
