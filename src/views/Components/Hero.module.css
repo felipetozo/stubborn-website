@@ -1,6 +1,7 @@
 .HeroSection {
     width: 100%;
-    padding: 5rem 0;
+    padding: 5rem 0 30rem 0;
+    overflow: hidden;
 }
 
 .HeroSectionWrapper {
@@ -19,11 +20,19 @@
     flex-direction: column;
     width: 100%;
     gap: 3rem;
+    justify-content: center;
 }
 
-.HeroSectionContainer img {
+.HeroSectionImageContainer {
+    justify-content: flex-start;
     width: 100%;
-    fill: cover;
+    margin-top: 5rem;
+}
+
+.HeroSectionImageContainer img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
     border-radius: 1rem;
 }
 
@@ -37,6 +46,10 @@
 
 @media (min-width: 1200px) {
     .HeroSectionWrapper {
+        width: 75%;
+    }
+
+    .HeroSectionImageContainer {
         width: 75%;
     }
 }
