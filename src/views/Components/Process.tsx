@@ -17,7 +17,7 @@ function Process() {
                             para evoluir o digital da sua empresa
                         </h2>
                         <p>
-                            Somos mais que uma simlpes prestação de serviços: somos sua equipe digital estendida, focada
+                            Somos mais que uma simples prestação de serviços: somos sua equipe digital estendida, focada
                             em evolução contínua. Cuidamos da sua estrutura online com inteligência e consistência, desde
                             sites até CRM's, até dashboard e integrações, para que sua empresa escale com liberdade,
                             obtendo resultados sustentáveis e livre de retrabalho.
