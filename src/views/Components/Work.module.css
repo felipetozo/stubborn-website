@@ -30,7 +30,7 @@
 .workGrid {
     margin-top: 5rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     gap: 2rem;
 }
 
@@ -61,8 +61,6 @@
     background-color: rgba(var(--color-stubbornWhite), 0.02);
     border: 1px solid rgba(var(--color-stubbornWhite), 0.1);
     border-radius: 1rem;
-    width: 80%;
-    transition: all 0.2s ease;
 }
 
 .workGridItem img {
@@ -83,6 +81,10 @@
 
     .workGridItem {
         width: 100%;
+    }
+
+    .workWrapper {
+        width: 90%;
     }
 }
 
