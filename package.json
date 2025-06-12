@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@react-spring/web": "^10.0.1",
+    "@studio-freight/lenis": "^1.0.42",
     "@supabase/supabase-js": "^2.49.8",
     "@vercel/analytics": "^1.5.0",
+    "gsap": "^3.13.0",
     "lucide": "^0.510.0",
     "lucide-react": "^0.510.0",
     "next": "15.3.2",
@@ -19,7 +21,9 @@
     "nodemailer": "^6.10.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-use": "^17.6.0"
+    "react-use": "^17.6.0",
+    "scrollmagic": "^2.0.8",
+    "scrollmagic-plugins": "^1.0.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

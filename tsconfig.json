@@ -35,6 +35,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "types/global.d.ts",
+    "types/scrollmagic.d.ts",
     "types/react-spring.d.ts"
   ],
   "exclude": [
