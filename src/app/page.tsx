@@ -1,6 +1,5 @@
 'use client';
 
-import { AppProps } from 'next/app';
 import Navbar from "@/views/Components/NavBar";
 import Hero from "@/views/Components/Hero";
 import Manifesto from "@/views/Components/Manifesto";
@@ -9,8 +8,9 @@ import Work from "@/views/Components/Work";
 import Footer from "@/views/Components/Footer";
 import { initLenis } from "../lib/lenis";
 import { useEffect } from "react";
+import { NextPage } from "next";
 
-function HomePage({ Component, pageProps }: AppProps) {
+const HomePage: NextPage = () => {
   useEffect(() => {
     const lenis = initLenis();
     return () => lenis.destroy();
@@ -28,6 +28,6 @@ function HomePage({ Component, pageProps }: AppProps) {
       </main>
     </div>
   );
-}
+};
 
 export default HomePage;
