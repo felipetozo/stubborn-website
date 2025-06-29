@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stubborn
 
-## Getting Started
+**Crafting long lasting experiences.**
 
-First, run the development server:
+Stubborn é uma agência independente focada em design e desenvolvimento digital sob medida.
+Atendemos startups, empresas em crescimento e profissionais autônomos que valorizam qualidade, profundidade e continuidade.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Trabalhamos no modelo de assinatura mensal, com planos a partir de 3 meses, orientados por metas claras e entregas consistentes.
+Atuamos com uma estrutura enxuta, priorizando relações duradouras, atendimento próximo e projetos de alta complexidade visual e técnica.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Stack principal
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Next.js
+- TypeScript
+- Tailwind CSS
+- GSAP / Framer Motion
+- Three.js / WebGL
+- Supabase
+- Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## O que entregamos
 
-## Learn More
+- Interfaces únicas e funcionais
+- Web apps operacionais (CRM, CMS, ferramentas internas)
+- Sites, landings e experiências interativas 3D
+- Otimização contínua e suporte técnico
+- Evolução de projetos já existentes
 
-To learn more about Next.js, take a look at the following resources:
+## Forma de trabalho
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Trabalhamos com entregas organizadas, comunicação clara e um processo contínuo de evolução digital.
+Nosso fluxo é pensado para que o cliente acompanhe tudo com transparência e simplicidade, sem ruídos ou burocracia desnecessária.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Planejamento e organização
 
-## Deploy on Vercel
+Notion
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Cada cliente recebe um painel exclusivo com:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Visão geral do projeto
+
+Tarefas em andamento, concluídas e futuras
+
+Referências, decisões e alinhamentos
+
+Documentação de tudo o que for construído
+
+2. Design
+
+FigmaCriamos interfaces personalizadas, com foco na identidade do cliente.
+
+Protótipos interativos
+
+Testes e validações rápidas
+
+Colaboração visual em tempo real
+
+3. Desenvolvimento
+
+VS Code + Stack principalUtilizamos tecnologias modernas e escaláveis para construir projetos sólidos:
+
+Next.js, TypeScript, Tailwind CSS
+
+Animações com GSAP / Framer Motion
+
+3D com Three.js
+
+Supabase e Vercel para backend e deploy
+
+4. CMS proprietário
+
+Sistema desenvolvido sob medida para cada cliente, com:
+
+Painel personalizado
+
+Gerenciamento de conteúdo simples e direto
+
+Flexível e adaptável às rotinas da empresa
+
+5. Suporte e acompanhamento
+
+WhatsApp diretoCanal aberto com o responsável pelo projeto, garantindo:
+
+Respostas rápidas
+
+Alinhamentos diretos sem intermediários
+
+Agilidade na tomada de decisões
+
+## Para quem é
+
+- Startups e empresas que faturam a partir de R$5M/ano
+- Negócios digitais que buscam diferenciação
+- Agências que precisam terceirizar design ou desenvolvimento
+- Autônomos com alto valor agregado e posicionamento digital claro
+
+## Compromissos
+
+- Criar com profundidade
+- Entregar com consistência
+- Evoluir com visão de longo prazo
+
+---

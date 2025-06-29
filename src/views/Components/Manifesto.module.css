@@ -1,29 +1,56 @@
-/* ========================================= */
-/* Estilos para a seção Manifesto            */
-/* ========================================= */
+/* src/views/Components/Manifesto.module.css */
 
 .ManifestoSection {
     width: 100%;
-    background-color: rgba(var(--color-stubbornWhite), 1);
-    padding: 10rem 0;
+    background-color: rgba(var(--color-stubbornBlack), 1);
+    padding: 5rem 0;
+    position: relative;
+    /* Importante para o posicionamento do canvas */
+    min-height: 120vh;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* NOVO: Estilo para o container do Canvas */
+.canvasContainer {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    /* Permite clicar através do canvas */
+    z-index: 1;
+    /* Padrão, será controlado pelo GSAP */
 }
 
 .ManifestoWrapper {
     width: 90%;
+    max-width: 800px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 5rem;
+    gap: 2rem;
+    position: relative;
+    /* z-index: 2 garante que o texto fique "acima" do fundo, 
+       mas o GSAP colocará o canvas com z-index: 3 por cima de tudo */
+    z-index: 2;
 }
 
 .ManifestoContent {
     display: flex;
     flex-direction: column;
-    padding: 10rem 0;
+    color: rgba(var(--color-stubbornWhite), 1);
+    text-align: left;
+    margin-bottom: 2rem;
 }
 
 .ManifestoContentSpan {
-    color: rgba(var(--color-stubbornBlack), 0.3);
+    color: rgba(var(--color-stubbornWhite), 0.8);
     font-weight: 400;
     font-size: 2rem;
     line-height: 1.4;
@@ -33,7 +60,7 @@
 
 .CraftingMotto p {
     font-family: var(--font-spaceGrotesk);
-    color: rgba(var(--color-stubbornBlack), 1);
+    color: rgba(var(--color-stubbornWhite), 1);
     font-size: 1.25rem;
     display: flex;
     width: 100%;
@@ -41,6 +68,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    z-index: 2;
 }
 
 .CraftingMottoLine {
@@ -52,10 +80,6 @@
     display: flex;
 }
 
-.ManifestoLogo {
-    filter: brightness(0);
-    margin: 0 auto;
-}
 
 @media (min-width:1200px) {
     .ManifestoWrapper {

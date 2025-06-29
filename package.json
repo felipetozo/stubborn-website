@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@react-spring/web": "^10.0.1",
+    "@react-three/drei": "^10.3.0",
+    "@react-three/fiber": "^9.1.2",
     "@studio-freight/lenis": "^1.0.42",
     "@supabase/supabase-js": "^2.49.8",
     "@vercel/analytics": "^1.5.0",
@@ -23,7 +25,8 @@
     "react-dom": "^19.0.0",
     "react-use": "^17.6.0",
     "scrollmagic": "^2.0.8",
-    "scrollmagic-plugins": "^1.0.8"
+    "scrollmagic-plugins": "^1.0.8",
+    "three": "^0.177.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
