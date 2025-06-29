@@ -9,7 +9,6 @@ import Footer from "@/views/Components/Footer";
 import { initLenis } from "../lib/lenis";
 import { useEffect } from "react";
 import { NextPage } from "next";
-import Manifesto from "@/views/Components/Manifesto";
 
 const HomePage: NextPage = () => {
   useEffect(() => {
@@ -24,7 +23,6 @@ const HomePage: NextPage = () => {
         <Hero />
         <Process />
         <Work />
-        <Manifesto />
         <Footer />
       </main>
     </div>

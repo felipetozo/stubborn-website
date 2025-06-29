@@ -36,19 +36,21 @@ const ConeModel = ({ modelRef }: { modelRef: React.RefObject<THREE.Mesh | null> 
               Estes valores podem ser ajustados para obter o visual desejado.
             */}
             <MeshTransmissionMaterial
-                thickness={0.2}          // Espessura do "vidro" 
-                roughness={0.05}         // Rugosidade mínima para melhor reflexão
-                transmission={0.95}      // Transmissão alta mas não total
-                ior={1.4}                // Índice de refração ajustado
-                chromaticAberration={0.03} // Dispersão de cor sutil
-                backside={true}          // Renderiza o lado de trás do objeto
-                color={'#87CEEB'}        // Tom azul céu mais visível
-                metalness={0.1}          // Leve propriedade metálica
-                clearcoat={1.0}          // Camada de verniz para reflexos
-                envMapIntensity={2.0}    // Intensidade do mapa de ambiente aumentada
-                reflectivity={0.8}       // Refletividade aumentada
-                transparent={true}       // Garantir transparência
-                opacity={0.9}            // Opacidade alta para visibilidade
+                thickness={0.2}          // Espessura moderada para refração controlada
+                roughness={0}            // Totalmente liso como vidro
+                transmission={1}         // Transmissão máxima para transparência total
+                ior={1.5}                // Índice de refração como vidro real
+                chromaticAberration={0.06} // Dispersão cromática visível mas sutil
+                backside={true}          // Renderiza ambos os lados
+                color={'#ffffff'}        // Branco para não interferir na cor
+                metalness={0}            // Zero metalness para vidro puro
+                clearcoat={1.0}          // Clearcoat máximo para brilho
+                envMapIntensity={1.0}    // Intensidade ambiente normal
+                reflectivity={0.1}       // Refletividade muito baixa
+                transparent={true}       // Transparência ativa
+                opacity={1.0}            // Opacidade máxima (controlada por transmission)
+                attenuationDistance={0.5} // Distância de atenuação
+                attenuationColor={'#ffffff'} // Cor de atenuação branca
             />
         </mesh>
     );
@@ -69,8 +71,6 @@ const GlassScene = () => {
 
             gsap.set(container, { opacity: 0, zIndex: -1 });
             gsap.set(modelGroupRef.current.position, { z: -10 });
-            // Ajusta a escala inicial do cone para metade do tamanho
-            gsap.set(modelGroupRef.current.scale, { x: 0.75, y: 0.75, z: 0.75 });
 
             if (idleTween.current) idleTween.current.kill();
             // Animação de rotação contínua (idle)
@@ -127,24 +127,16 @@ const GlassScene = () => {
                 </Suspense>
             </group>
 
-            {/* Luzes otimizadas para o material de vidro */}
-            <ambientLight intensity={1.0} color="#ffffff" />
+            {/* Luzes otimizadas para efeito de vidro cristalino */}
+            <ambientLight intensity={0.4} color="#ffffff" />
             <directionalLight
                 position={[10, 10, 5]}
-                intensity={2.0}
-                color="#ffffff"
-                castShadow
-            />
-            <pointLight position={[-5, 5, 5]} intensity={1.5} distance={100} color="#ffffff" />
-            <pointLight position={[5, -3, 3]} intensity={1.2} distance={100} color="#ffffff" />
-            <spotLight
-                position={[0, 10, 10]}
-                angle={0.3}
-                penumbra={1}
                 intensity={1.0}
-                castShadow
                 color="#ffffff"
+                castShadow
             />
+            <pointLight position={[-5, 5, 5]} intensity={0.8} distance={100} color="#ffffff" />
+            <pointLight position={[5, -3, 3]} intensity={0.6} distance={100} color="#ffffff" />
         </>
     );
 };
