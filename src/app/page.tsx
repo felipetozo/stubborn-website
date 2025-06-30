@@ -3,7 +3,7 @@
 
 import Navbar from "@/views/Components/NavBar";
 import Hero from "@/views/Components/Hero";
-import Process from "@/views/Components/Process";
+import Services from "@/views/Components/Services";
 import Crafting from "@/views/Components/Crafting";
 import Work from "@/views/Components/Work";
 import Footer from "@/views/Components/Footer";
@@ -22,7 +22,7 @@ const HomePage: NextPage = () => {
       <main>
         <Navbar />
         <Hero />
-        <Process />
+        <Services />
         <Crafting />
         <Work />
         <Footer />
