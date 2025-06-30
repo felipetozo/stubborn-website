@@ -13,14 +13,11 @@ function Process() {
                 <div className={styles.processWrapper}>
                     <div className={styles.processHeader}>
                         <h2>
-                            Mais que serviços, uma parceria estratégica
-                            para evoluir o digital da sua empresa
+                            Experências digitais sob medida para marcas que querem evoluir com consistência.
                         </h2>
                         <p>
-                            Somos mais que uma simples prestação de serviços: somos sua equipe digital estendida, focada
-                            em evolução contínua. Cuidamos da sua estrutura online com inteligência e consistência, desde
-                            sites até CRM's, até dashboard e integrações, para que sua empresa escale com liberdade,
-                            obtendo resultados sustentáveis e livre de retrabalho.
+                            Design, desenvolvimento e suporte contínuo para fortalecer a presença digital da sua empresa
+                            com desempenho, identidade e visão de longo prazo.
                         </p>
                     </div>
                     <div className={styles.processServices}>

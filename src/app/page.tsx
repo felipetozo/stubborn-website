@@ -4,6 +4,7 @@
 import Navbar from "@/views/Components/NavBar";
 import Hero from "@/views/Components/Hero";
 import Process from "@/views/Components/Process";
+import Crafting from "@/views/Components/Crafting";
 import Work from "@/views/Components/Work";
 import Footer from "@/views/Components/Footer";
 import { initLenis } from "../lib/lenis";
@@ -22,6 +23,7 @@ const HomePage: NextPage = () => {
         <Navbar />
         <Hero />
         <Process />
+        <Crafting />
         <Work />
         <Footer />
       </main>

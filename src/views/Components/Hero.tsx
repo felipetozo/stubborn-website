@@ -13,12 +13,10 @@ function Hero() {
             <div className={styles.HeroSectionWrapper}>
                 <div className={styles.HeroSectionContainer}>
                     <h1>
-                        O ecossistema digital da sua empresa, em constante evolução.
+                        Soluções digitais que crescem junto com o seu negócio - com estrutura, identidade e propósito.
                     </h1>
                     <p>
-                        Sem pacotes prontos, sem amarras. Seu ecossistema
-                        digital será seguro, escalável e preparado para
-                        acompanhar cada etapa do crescimento da sua empresa.
+                        Design, desenvolvimento e suporte contínuo em um modelo de assinatura feito para empresas que precisam evoluir com consistência e autonomia.
                     </p>
                     <div className={styles.buttonsFlex}>
                         <Button variant="primary" size="medium">

@@ -164,3 +164,7 @@ small,
   color: rgba(var(--color-darkestGray), 1);
   margin-bottom: 1.5rem;
 }
+
+.blueText {
+  color: rgba(var(--color-stubbornBlue), 1);
+}
