@@ -23,6 +23,10 @@
     -webkit-backdrop-filter: blur(1rem);
 }
 
+.navBarLogo {
+    min-width: 100px;
+}
+
 .navBarItems {
     display: none;
 }
