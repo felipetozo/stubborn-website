@@ -50,30 +50,6 @@ function Work() {
                         </div>
                         <div className={styles.workGridItem}>
                             <Link
-                                href="https://www.talmak.com.br"
-                                target="_blank"
-                            >
-                                <Image
-                                    src="/img/stubborn-portfolio-criacao-site-02-Talmak.png"
-                                    alt="stubborn criação de sites"
-                                    width={1000}
-                                    height={500}
-                                />
-                                <div className={styles.workGridItemContent}>
-                                    <span>
-                                        <ExternalLink
-                                            width={24}
-                                            height={24}
-                                            strokeWidth={1}
-                                            className={styles.blueText}
-                                        />
-                                    </span>
-                                    Talmak Solutions - webSite
-                                </div>
-                            </Link>
-                        </div>
-                        <div className={styles.workGridItem}>
-                            <Link
                                 href="https://www.easycorten.com.br"
                                 target="_blank"
                             >
