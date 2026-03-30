@@ -1,5 +1,4 @@
 # Stubborn
-
 **Crafting long lasting experiences.**
 
 Stubborn é uma agência independente focada em design e desenvolvimento digital sob medida.
