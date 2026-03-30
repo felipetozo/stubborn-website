@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Senha incorreta' }, { status: 401 })
   }
 
-  const token = signToken('authenticated')
+  const token = await signToken('authenticated')
   const response = NextResponse.json({ success: true })
   response.cookies.set(COOKIE_NAME, token, {
     httpOnly: true,
