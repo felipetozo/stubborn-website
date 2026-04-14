@@ -40,3 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .env
+
+# drive storage (uploaded files — keep out of git)
+/drive-storage/
