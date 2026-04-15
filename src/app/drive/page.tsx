@@ -404,6 +404,7 @@ function DriveInner() {
   const [contextMenu, setContextMenu]   = useState<ContextMenu | null>(null)
   const [confirmDelete, setConfirmDelete] = useState<DriveFile | null>(null)
   const [selectedPaths, setSelectedPaths] = useState<Set<string>>(new Set())
+  const [isZipping, setIsZipping] = useState(false)
   const [marquee, setMarquee] = useState<{
     startX: number; startY: number; currentX: number; currentY: number
   } | null>(null)
@@ -665,11 +666,45 @@ function DriveInner() {
 
   // ── Download ─────────────────────────────────────────────────────────────────
 
+  function toggleSelect(filePath: string) {
+    setSelectedPaths(prev => {
+      const next = new Set(prev)
+      if (next.has(filePath)) next.delete(filePath)
+      else next.add(filePath)
+      return next
+    })
+  }
+
   function downloadFile(file: DriveFile) {
     const a = document.createElement('a')
     a.href = `/api/drive/download?path=${encodeURIComponent(file.path)}`
     a.download = file.name
     a.click()
+  }
+
+  async function downloadSelected() {
+    const paths = Array.from(selectedPaths)
+    if (paths.length === 0) return
+    setIsZipping(true)
+    try {
+      const res = await fetch('/api/drive/download-zip', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ paths }),
+      })
+      if (!res.ok) return
+      const blob = await res.blob()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = paths.length === 1
+        ? (files.find(f => f.path === paths[0])?.name ?? 'download')
+        : 'download.zip'
+      a.click()
+      URL.revokeObjectURL(url)
+    } finally {
+      setIsZipping(false)
+    }
   }
 
   // ── Context menus ─────────────────────────────────────────────────────────────
@@ -888,8 +923,8 @@ function DriveInner() {
                 'data-filepath': file.path,
                 onClick: () => {
                   if (marquee) return
-                  setSelectedPaths(new Set())
                   if (file.type === 'folder') navigate(file.path)
+                  else toggleSelect(file.path)
                 },
                 onContextMenu: (e: React.MouseEvent) => openFileMenu(file, e),
               }
@@ -936,8 +971,24 @@ function DriveInner() {
                       }}
                     />
 
+                    {/* Checkbox top-left */}
+                    <div
+                      className="absolute left-2 top-2 z-10 flex h-5 w-5 items-center justify-center rounded-full transition-all opacity-0 group-hover:opacity-100"
+                      style={isSelected ? {
+                        opacity: 1,
+                        background: '#fff',
+                        boxShadow: '0 1px 4px rgba(0,0,0,0.4)',
+                      } : {
+                        background: 'rgba(0,0,0,0.55)',
+                        border: '1.5px solid rgba(255,255,255,0.4)',
+                      }}
+                      onClick={e => { e.stopPropagation(); toggleSelect(file.path) }}
+                    >
+                      <Check size={10} style={{ color: isSelected ? '#000' : 'rgba(255,255,255,0.85)' }} />
+                    </div>
+
                     {/* Filename top-left */}
-                    <div className="absolute top-0 inset-x-0 flex items-center justify-between px-2 pt-2 pr-8">
+                    <div className="absolute top-0 inset-x-0 flex items-center justify-between pl-8 pr-8 pt-2">
                       <span className="truncate text-[11px] font-medium text-white drop-shadow">
                         {file.name}
                       </span>
@@ -978,8 +1029,9 @@ function DriveInner() {
                   {...sharedProps}
                   className="group relative flex flex-col items-center gap-2 rounded-xl border p-4 cursor-pointer transition-colors"
                   style={{
-                    borderColor: isSelected ? '#555' : '#1a1a1a',
+                    borderColor: isSelected ? 'rgba(255,255,255,0.55)' : '#1a1a1a',
                     background: isSelected ? '#1a1a1a' : 'transparent',
+                    boxShadow: isSelected ? '0 0 0 1px rgba(255,255,255,0.18)' : 'none',
                   }}
                   onMouseEnter={e => {
                     if (isSelected) return
@@ -992,6 +1044,22 @@ function DriveInner() {
                     ;(e.currentTarget as HTMLElement).style.borderColor = '#1a1a1a'
                   }}
                 >
+                  {/* Checkbox top-left */}
+                  <div
+                    className="absolute left-2 top-2 z-10 flex h-5 w-5 items-center justify-center rounded-full transition-all opacity-0 group-hover:opacity-100"
+                    style={isSelected ? {
+                      opacity: 1,
+                      background: '#fff',
+                      boxShadow: '0 1px 4px rgba(0,0,0,0.4)',
+                    } : {
+                      background: 'rgba(30,30,30,0.8)',
+                      border: '1.5px solid rgba(255,255,255,0.3)',
+                    }}
+                    onClick={e => { e.stopPropagation(); toggleSelect(file.path) }}
+                  >
+                    <Check size={10} style={{ color: isSelected ? '#000' : 'rgba(255,255,255,0.7)' }} />
+                  </div>
+
                   <Icon size={32} style={{ color }} />
                   <span className="w-full truncate text-center text-xs leading-tight" style={{ color: '#ccc' }}>
                     {file.name}
@@ -1044,6 +1112,7 @@ function DriveInner() {
                       style={{
                         borderColor: '#111',
                         background: isSelectedRow ? '#151515' : 'transparent',
+                        boxShadow: isSelectedRow ? 'inset 2px 0 0 rgba(255,255,255,0.25)' : 'none',
                       }}
                       onMouseEnter={e => {
                         if (!isSelectedRow)
@@ -1055,13 +1124,27 @@ function DriveInner() {
                       }}
                       onClick={() => {
                         if (marquee) return
-                        setSelectedPaths(new Set())
                         if (file.type === 'folder') navigate(file.path)
+                        else toggleSelect(file.path)
                       }}
                       onContextMenu={e => openFileMenu(file, e)}
                     >
                       <td className="px-4 py-2.5">
                         <div className="flex items-center gap-2.5">
+                          {/* Checkbox */}
+                          <div
+                            className="shrink-0 flex h-4 w-4 items-center justify-center rounded-full transition-all opacity-0 group-hover:opacity-100"
+                            style={isSelectedRow ? {
+                              opacity: 1,
+                              background: '#fff',
+                            } : {
+                              background: 'transparent',
+                              border: '1.5px solid rgba(255,255,255,0.25)',
+                            }}
+                            onClick={e => { e.stopPropagation(); toggleSelect(file.path) }}
+                          >
+                            {isSelectedRow && <Check size={9} style={{ color: '#000' }} />}
+                          </div>
                           <Icon size={15} style={{ color }} />
                           <span className="text-xs" style={{ color: '#ccc' }}>
                             {file.name}
@@ -1303,6 +1386,21 @@ function DriveInner() {
           <span className="text-xs font-medium text-white">
             {selectedPaths.size} selected
           </span>
+          <div className="w-px h-3" style={{ background: '#333' }} />
+          <button
+            className="flex items-center gap-1.5 text-xs transition-colors disabled:opacity-40"
+            style={{ color: '#ccc' }}
+            onMouseEnter={e => { if (!isZipping) (e.currentTarget as HTMLElement).style.color = '#fff' }}
+            onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = '#ccc')}
+            onClick={downloadSelected}
+            disabled={isZipping}
+          >
+            {isZipping
+              ? <Loader2 size={12} className="animate-spin" />
+              : <Download size={12} />
+            }
+            {isZipping ? 'Compactando…' : 'Download'}
+          </button>
           <div className="w-px h-3" style={{ background: '#333' }} />
           <button
             className="flex items-center gap-1.5 text-xs text-red-400 transition-colors hover:text-red-300"
