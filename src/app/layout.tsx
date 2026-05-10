@@ -4,7 +4,8 @@ import type { Metadata } from 'next';
 import { Space_Grotesk, Inter } from 'next/font/google';
 import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
-import TrackingScripts from '@/integrations/TrackingScripts';
+import TrackingScripts from '@/integrations/TrackingScripts'
+import ChatbotWidget from '@/integrations/ChatbotWidget';
 
 const spaceGrotesk = Space_Grotesk({
   variable: '--font-spaceGrotesk',
@@ -36,6 +37,7 @@ export default function RootLayout({
         <TrackingScripts />
         {children}
         <Analytics />
+        <ChatbotWidget />
       </body>
     </html>
   );
