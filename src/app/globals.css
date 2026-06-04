@@ -9,6 +9,13 @@
   --color-Black: 0, 0, 0;
   --color-stubbornBlue: 77, 91, 252;
   --color-stubbornGreen: 0, 173, 26;
+
+  /* Variáveis usadas pelos módulos do blog (portados do admin-app).
+     Paleta INVERTIDA para o tema escuro do projeto: "branco" vira a
+     superfície escura dos cards e "preto" vira o texto claro. */
+  --rgb-stubborn-blue: 77, 91, 252;
+  --rgb-white: 16, 19, 25;
+  --rgb-black: 221, 219, 225;
 }
 
 @theme inline {

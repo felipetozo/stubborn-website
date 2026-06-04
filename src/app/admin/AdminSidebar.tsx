@@ -2,11 +2,12 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { RiContactsBookLine, RiBarChartBoxLine, RiLogoutBoxRLine } from 'react-icons/ri'
+import { RiContactsBookLine, RiBarChartBoxLine, RiArticleLine, RiLogoutBoxRLine } from 'react-icons/ri'
 
 const NAV = [
   { href: '/admin', label: 'CRM', Icon: RiContactsBookLine },
   { href: '/admin/analytics', label: 'Analytics', Icon: RiBarChartBoxLine },
+  { href: '/admin/blog', label: 'Blog', Icon: RiArticleLine },
 ] as const
 
 export default function AdminSidebar() {

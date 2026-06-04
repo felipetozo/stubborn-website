@@ -20,6 +20,34 @@ model FooterFormSubmission {
   @@map("footer_form_submissions")
 }
 
+model BlogPost {
+  id              String    @id @default(uuid())
+  slug            String    @unique
+  title           String
+  excerpt         String?
+  content         String    @db.Text
+  category        String?
+  tags            String[]  @default([])
+  coverImage      String?   @map("cover_image")
+  coverAlt        String?   @map("cover_alt")
+  readTimeMinutes Int?      @map("read_time_minutes")
+  authorName      String    @default("Equipe") @map("author_name")
+  authorTitle     String?   @map("author_title")
+  authorImage     String?   @map("author_image")
+  destaque        Boolean   @default(false)
+  status          String    @default("rascunho") // publicado | rascunho | agendado
+  published       Boolean   @default(false)
+  publishedAt     DateTime? @map("published_at")
+  metaTitle       String?   @map("meta_title")
+  metaDescription String?   @map("meta_description")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+
+  @@index([slug])
+  @@index([status, publishedAt])
+  @@map("blog_posts")
+}
+
 model AnalyticsVisitor {
   id           String    @id
   firstSeen    DateTime  @default(now()) @map("first_seen")
@@ -78,4 +106,19 @@ model AnalyticsEvent {
   @@index([visitorId])
   @@index([createdAt])
   @@map("analytics_event")
+}
+
+// Stubborn Connect — log de conteúdo recebido do Admin App
+model StubbornContentLog {
+  id          String    @id @default(uuid())
+  type        String
+  content     String    @db.Text
+  metadata    Json?
+  publishedAt DateTime? @map("published_at")
+  blogPostId  String?   @map("blog_post_id")
+  action      String    @default("saved")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  @@index([createdAt])
+  @@map("stubborn_content_log")
 }

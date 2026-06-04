@@ -1,0 +1,100 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.dropzone {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1.5px dashed rgba(var(--rgb-black), 0.18);
+  border-radius: 0.625rem;
+  background: rgba(var(--rgb-black), 0.02);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.dropzone:hover {
+  border-color: rgba(var(--rgb-stubborn-blue), 0.5);
+  background: rgba(var(--rgb-stubborn-blue), 0.03);
+}
+
+.dropzoneDrag {
+  border-color: rgba(var(--rgb-stubborn-blue), 0.7);
+  background: rgba(var(--rgb-stubborn-blue), 0.06);
+}
+
+.dropzoneLoading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  filter: grayscale(0.5);
+}
+
+.hint {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(var(--rgb-black), 0.6);
+}
+
+.sub {
+  font-size: 0.72rem;
+  color: rgba(var(--rgb-black), 0.35);
+}
+
+.loadingText {
+  font-size: 0.85rem;
+  color: rgba(var(--rgb-black), 0.5);
+}
+
+.preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 0.625rem;
+  overflow: hidden;
+  border: 1px solid rgba(var(--rgb-black), 0.1);
+}
+
+.removeBtn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  z-index: 1;
+}
+
+.removeBtn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.fileInput {
+  display: none;
+}
+
+.error {
+  font-size: 0.75rem;
+  color: rgb(248, 113, 113);
+}
