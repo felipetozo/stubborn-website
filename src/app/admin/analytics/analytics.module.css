@@ -1,0 +1,779 @@
+/* ================================================================
+   Analytics Admin — tema escuro (stubborn)
+   Superfície #101319 · texto #DDDBE1 · acento rgb(77, 91, 252)
+   ================================================================ */
+
+/* ── Cabeçalho full-width ────────────────────────────────────── */
+.headerBar {
+  background: #101319;
+  border-bottom: 1px solid rgba(221, 219, 225, 0.08);
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #DDDBE1;
+  margin: 0 0 0.125rem;
+}
+
+.subtitle {
+  font-size: 0.8125rem;
+  color: rgba(221, 219, 225, 0.45);
+  margin: 0;
+}
+
+.refreshStatus {
+  font-size: 0.72rem;
+  color: rgba(221, 219, 225, 0.4);
+  white-space: nowrap;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.refreshBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(221, 219, 225, 0.12);
+  border-radius: 0.375rem;
+  background: transparent;
+  cursor: pointer;
+  color: rgba(221, 219, 225, 0.6);
+  font-size: 1rem;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+.refreshBtn:hover {
+  background: rgba(221, 219, 225, 0.06);
+  border-color: rgba(221, 219, 225, 0.2);
+  color: rgb(77, 91, 252);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.spinning {
+  animation: spin 0.6s linear infinite;
+}
+
+/* ── Seletor de período ──────────────────────────────────────── */
+.period {
+  display: flex;
+  gap: 0.25rem;
+  background: rgba(221, 219, 225, 0.06);
+  padding: 0.2rem;
+  border-radius: 0.5rem;
+}
+.periodBtn {
+  border: none;
+  background: transparent;
+  padding: 0.375rem 0.875rem;
+  border-radius: 0.375rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgba(221, 219, 225, 0.6);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.periodBtn:hover {
+  color: #DDDBE1;
+}
+.periodBtnActive {
+  background: rgba(77, 91, 252, 0.15);
+  color: rgb(77, 91, 252);
+  font-weight: 700;
+}
+
+/* ── Conteúdo ───────────────────────────────────────────────── */
+.content {
+  padding: 2rem;
+}
+
+/* ── Cards de resumo ────────────────────────────────────────── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.card {
+  background: #101319;
+  border: 1px solid rgba(221, 219, 225, 0.08);
+  border-radius: 0.375rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.cardIcon {
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
+  color: rgb(77, 91, 252);
+  opacity: 0.55;
+  display: flex;
+}
+
+.cardValue {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: rgb(77, 91, 252);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.cardValueLoading {
+  color: rgba(221, 219, 225, 0.2);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.cardLabel {
+  font-size: 0.75rem;
+  color: rgba(221, 219, 225, 0.55);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.cardSub {
+  font-size: 0.72rem;
+  color: rgba(221, 219, 225, 0.4);
+  margin-top: 0.25rem;
+}
+
+/* ── Painéis ────────────────────────────────────────────────── */
+.panel {
+  background: #101319;
+  border: 1px solid rgba(221, 219, 225, 0.08);
+  border-radius: 0.375rem;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid rgba(221, 219, 225, 0.06);
+}
+
+.panelTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #DDDBE1;
+}
+.panelTitle svg {
+  color: rgb(77, 91, 252);
+}
+
+.panelHint {
+  font-size: 0.72rem;
+  color: rgba(221, 219, 225, 0.4);
+}
+
+.panelBody {
+  padding: 0.5rem 0.5rem 0.25rem;
+}
+
+.panelChart .chartWrap {
+  height: 280px;
+  padding: 1rem 1.25rem 0.5rem;
+  position: relative;
+}
+
+/* ── Grid de 3 colunas ──────────────────────────────────────── */
+.row3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.row3 .panel {
+  margin-bottom: 0;
+}
+
+/* ── Tabelas ────────────────────────────────────────────────── */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+
+.table th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid rgba(221, 219, 225, 0.08);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: rgba(221, 219, 225, 0.45);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid rgba(221, 219, 225, 0.05);
+  color: rgba(221, 219, 225, 0.85);
+  vertical-align: middle;
+}
+.table tr:last-child td {
+  border-bottom: none;
+}
+.table tbody tr:hover td {
+  background: rgba(77, 91, 252, 0.08);
+}
+
+.numCell {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: rgb(77, 91, 252);
+  white-space: nowrap;
+}
+.numMuted {
+  color: rgba(221, 219, 225, 0.4);
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+
+.pathCell {
+  font-family: 'Menlo', 'Monaco', monospace;
+  font-size: 0.76rem;
+  color: rgb(77, 91, 252);
+  max-width: 230px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.labelCell {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dateCell {
+  font-size: 0.74rem;
+  color: rgba(221, 219, 225, 0.5);
+  white-space: nowrap;
+}
+
+.bar {
+  display: inline-block;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, rgb(77, 91, 252), rgb(58, 120, 150));
+  min-width: 2px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* ── Visitantes ─────────────────────────────────────────────── */
+.visitorRow {
+  cursor: pointer;
+}
+.visitorRow:hover td {
+  background: rgba(77, 91, 252, 0.08) !important;
+}
+
+.visitorBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(77, 91, 252, 0.12);
+  color: rgb(77, 91, 252);
+  border-radius: 20px;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.deviceBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.7rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 20px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.deviceMobile {
+  background: rgba(221, 219, 225, 0.1);
+  color: rgba(221, 219, 225, 0.7);
+}
+.deviceDesktop {
+  background: rgba(77, 91, 252, 0.12);
+  color: rgb(77, 91, 252);
+}
+
+/* ── Célula de origem ───────────────────────────────────────── */
+.refSourceCell {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+.srcIcon {
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  color: rgba(221, 219, 225, 0.55);
+}
+.srcName {
+  font-weight: 500;
+  color: #DDDBE1;
+  font-size: 0.8125rem;
+}
+.srcTypeTag {
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 0.1rem 0.45rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+.srcTypePaid {
+  background: rgba(221, 219, 225, 0.1);
+  color: rgba(221, 219, 225, 0.6);
+}
+.srcTypeOrganic {
+  background: rgba(77, 91, 252, 0.12);
+  color: rgb(77, 91, 252);
+}
+.srcCampaign {
+  font-size: 0.72rem;
+  color: rgba(221, 219, 225, 0.45);
+  font-style: italic;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.refSourceCompact .srcName {
+  max-width: 130px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.refSourceCompact .srcTypeTag,
+.refSourceCompact .srcCampaign {
+  display: none;
+}
+
+/* ── Badges de evento ───────────────────────────────────────── */
+.eventBadge {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  border-radius: 20px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.evNav { background: rgba(77, 91, 252, 0.15); color: rgb(77, 91, 252); }
+.evChatbot { background: rgba(0, 173, 26, 0.15); color: rgb(0, 173, 26); }
+.evForm { background: rgba(180, 100, 255, 0.15); color: rgb(180, 100, 255); }
+.evWhats { background: rgba(0, 173, 26, 0.15); color: rgb(0, 173, 26); }
+.evCta { background: rgba(255, 196, 0, 0.15); color: rgb(255, 196, 0); }
+.evOther { background: rgba(221, 219, 225, 0.08); color: rgba(221, 219, 225, 0.5); }
+
+/* ── Estado vazio ───────────────────────────────────────────── */
+.empty {
+  text-align: center;
+  padding: 2.25rem 1rem;
+  color: rgba(221, 219, 225, 0.35);
+  font-size: 0.85rem;
+}
+.emptyIcon {
+  font-size: 1.75rem;
+  display: block;
+  margin: 0 auto 0.5rem;
+}
+
+/* ── Paginação ──────────────────────────────────────────────── */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-top: 1px solid rgba(221, 219, 225, 0.06);
+}
+.pgBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid rgba(221, 219, 225, 0.12);
+  border-radius: 0.375rem;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: rgba(221, 219, 225, 0.6);
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  padding: 0;
+}
+.pgBtn:hover:not(:disabled) {
+  background: rgba(221, 219, 225, 0.06);
+  border-color: rgba(221, 219, 225, 0.2);
+  color: rgb(77, 91, 252);
+}
+.pgBtn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.pgInfo {
+  font-size: 0.74rem;
+  color: rgba(221, 219, 225, 0.5);
+  font-weight: 500;
+  min-width: 44px;
+  text-align: center;
+}
+
+/* ── Tooltip do gráfico ─────────────────────────────────────── */
+.tooltip {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  background: #15181E;
+  border: 1px solid rgba(221, 219, 225, 0.12);
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+}
+.tooltipLabel {
+  font-size: 0.7rem;
+  color: rgba(221, 219, 225, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.tooltipValue {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: rgb(77, 91, 252);
+}
+
+/* ── Drawer lateral: ficha do visitante ──────────────────────── */
+.drawerOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 1000;
+  pointer-events: none;
+  transition: background 0.3s;
+}
+.drawerOverlayVisible {
+  background: rgba(0, 0, 0, 0.6);
+  pointer-events: all;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 870px;
+  max-width: 92vw;
+  height: 100vh;
+  background: #0B0E13;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  border-left: 1px solid rgba(221, 219, 225, 0.12);
+}
+.drawerOpen {
+  transform: translateX(0);
+}
+
+.drawerHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid rgba(221, 219, 225, 0.08);
+  background: #101319;
+  flex-shrink: 0;
+  gap: 1rem;
+}
+.drawerHeadLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+.drawerTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgb(77, 91, 252);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.drawerSub {
+  font-size: 0.75rem;
+  color: rgba(221, 219, 225, 0.4);
+}
+.modalClose {
+  display: inline-flex;
+  background: none;
+  border: none;
+  font-size: 1.35rem;
+  cursor: pointer;
+  color: rgba(221, 219, 225, 0.5);
+  line-height: 1;
+  padding: 0.15rem;
+}
+.modalClose:hover {
+  color: #DDDBE1;
+}
+
+.drawerBody {
+  flex: 1;
+  min-height: 0;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+/* Abas */
+.modalTabs {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(221, 219, 225, 0.08);
+}
+.modalTabBtn {
+  border: none;
+  background: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: rgba(221, 219, 225, 0.45);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.modalTabBtn:hover {
+  color: #DDDBE1;
+}
+.modalTabBtnActive {
+  color: rgb(77, 91, 252);
+  border-bottom-color: rgb(77, 91, 252);
+}
+
+/* Timeline */
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background: rgba(221, 219, 225, 0.1);
+}
+.timelineItem {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.timelineItem:last-child {
+  margin-bottom: 0;
+}
+.timelineDot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  position: relative;
+  z-index: 1;
+}
+.timelineDotPv {
+  background: rgba(77, 91, 252, 0.15);
+  color: rgb(77, 91, 252);
+}
+.timelineDotEv {
+  background: rgba(221, 219, 225, 0.12);
+  color: rgba(221, 219, 225, 0.7);
+}
+.timelineContent {
+  flex: 1;
+  background: rgba(221, 219, 225, 0.04);
+  border-radius: 0.375rem;
+  padding: 0.55rem 0.875rem;
+  font-size: 0.8rem;
+  min-width: 0;
+}
+.tlMain {
+  font-weight: 600;
+  color: #DDDBE1;
+  margin-bottom: 0.2rem;
+  word-break: break-word;
+}
+.tlMeta {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  color: rgba(221, 219, 225, 0.45);
+  font-size: 0.72rem;
+}
+.tlMeta .srcName {
+  font-size: 0.72rem;
+}
+.tlMeta .srcIcon {
+  font-size: 0.8rem;
+}
+
+/* ── Badge de visitante identificado (CRM) ──────────────────── */
+.visitorBadgeNamed {
+  background: rgba(0, 173, 26, 0.15);
+  color: rgb(0, 173, 26);
+}
+.visitorIdCell {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.visitorNumSub {
+  font-size: 0.68rem;
+  color: rgba(221, 219, 225, 0.4);
+  font-weight: 600;
+}
+
+/* ── Ficha "Informações do visitante" ───────────────────────── */
+.vinfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.vinfoSectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgb(77, 91, 252);
+}
+.vinfoSectionTitle:first-child {
+  margin-top: 0;
+}
+.vinfoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4rem 1.5rem;
+}
+.vinfoRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(221, 219, 225, 0.05);
+  min-width: 0;
+}
+.vinfoLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: rgba(221, 219, 225, 0.5);
+  white-space: nowrap;
+}
+.vinfoValue {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: rgba(221, 219, 225, 0.85);
+  text-align: right;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.vinfoChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(77, 91, 252, 0.12);
+  color: rgb(77, 91, 252);
+  border-radius: 8px;
+  padding: 0.18rem 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.vinfoCode {
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-size: 0.78rem;
+  background: rgba(221, 219, 225, 0.08);
+  border-radius: 6px;
+  padding: 0.1rem 0.4rem;
+  color: rgba(221, 219, 225, 0.8);
+}
+.vinfoUa {
+  margin-top: 0.85rem;
+  padding: 0.6rem 0.75rem;
+  background: rgba(221, 219, 225, 0.04);
+  border-radius: 8px;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: rgba(221, 219, 225, 0.55);
+  word-break: break-all;
+}
+
+/* ── Responsivo ─────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .content {
+    padding: 1.25rem;
+  }
+  .headerBar {
+    padding: 1rem 1.25rem;
+  }
+  .vinfoGrid {
+    grid-template-columns: 1fr;
+  }
+}

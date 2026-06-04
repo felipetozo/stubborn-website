@@ -6,6 +6,7 @@ import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
 import TrackingScripts from '@/integrations/TrackingScripts'
 import ChatbotWidget from '@/integrations/ChatbotWidget';
+import AnalyticsTracker from '@/integrations/AnalyticsTracker';
 
 const spaceGrotesk = Space_Grotesk({
   variable: '--font-spaceGrotesk',
@@ -33,8 +34,9 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className={`${spaceGrotesk.variable} ${inter.variable}`}>
+      <body className={`${spaceGrotesk.variable} ${inter.variable}`} suppressHydrationWarning>
         <TrackingScripts />
+        <AnalyticsTracker />
         {children}
         <Analytics />
         <ChatbotWidget />

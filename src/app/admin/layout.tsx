@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Space_Grotesk, Inter } from 'next/font/google'
 import '../globals.css'
+import AdminShell from './AdminShell'
 
 const spaceGrotesk = Space_Grotesk({
   variable: '--font-spaceGrotesk',
@@ -20,8 +21,8 @@ export const metadata: Metadata = {
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
-      <body className={`${spaceGrotesk.variable} ${inter.variable}`} style={{ background: '#07090C', color: '#DDDBE1', minHeight: '100vh' }}>
-        {children}
+      <body className={`${spaceGrotesk.variable} ${inter.variable}`} style={{ background: '#07090C', color: '#DDDBE1', minHeight: '100vh' }} suppressHydrationWarning>
+        <AdminShell>{children}</AdminShell>
       </body>
     </html>
   )

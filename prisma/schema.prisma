@@ -19,3 +19,63 @@ model FooterFormSubmission {
 
   @@map("footer_form_submissions")
 }
+
+model AnalyticsVisitor {
+  id           String    @id
+  firstSeen    DateTime  @default(now()) @map("first_seen")
+  lastSeen     DateTime  @default(now()) @map("last_seen")
+  visitCount   Int       @default(1) @map("visit_count")
+  lastIp       String?   @map("last_ip")
+  userAgent    String?   @map("user_agent")
+  language     String?
+  timezone     String?
+  screen       String?
+  displayName  String?   @map("display_name")
+  leadKey      String?   @map("lead_key")
+  identifiedAt DateTime? @map("identified_at")
+  pageviews    AnalyticsPageview[]
+  events       AnalyticsEvent[]
+
+  @@map("analytics_visitor")
+}
+
+model AnalyticsPageview {
+  id             Int              @id @default(autoincrement())
+  visitorId      String           @map("visitor_id")
+  visitor        AnalyticsVisitor @relation(fields: [visitorId], references: [id], onDelete: Cascade)
+  sessionKey     String?          @map("session_key")
+  path           String
+  title          String?
+  referrer       String?
+  referrerDomain String?          @map("referrer_domain")
+  referrerSrc    String?          @map("referrer_src")
+  isMobile       Boolean          @default(false) @map("is_mobile")
+  utmSource      String?          @map("utm_source")
+  utmMedium      String?          @map("utm_medium")
+  utmCampaign    String?          @map("utm_campaign")
+  utmContent     String?          @map("utm_content")
+  utmTerm        String?          @map("utm_term")
+  timeOnPage     Int?             @map("time_on_page")
+  createdAt      DateTime         @default(now()) @map("created_at")
+
+  @@index([visitorId])
+  @@index([createdAt])
+  @@index([sessionKey, path, visitorId])
+  @@map("analytics_pageview")
+}
+
+model AnalyticsEvent {
+  id         Int              @id @default(autoincrement())
+  visitorId  String           @map("visitor_id")
+  visitor    AnalyticsVisitor @relation(fields: [visitorId], references: [id], onDelete: Cascade)
+  sessionKey String?          @map("session_key")
+  eventType  String           @map("event_type")
+  eventLabel String?          @map("event_label")
+  eventData  Json?            @map("event_data")
+  path       String?
+  createdAt  DateTime         @default(now()) @map("created_at")
+
+  @@index([visitorId])
+  @@index([createdAt])
+  @@map("analytics_event")
+}
