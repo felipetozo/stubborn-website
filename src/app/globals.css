@@ -74,27 +74,25 @@ body {
 /* ===== TIPOGRAFIA PROFISSIONAL - ESCALA OTIMIZADA ===== */
 
 h1 {
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
-  /* ~28-40px */
-  font-weight: 300;
-  line-height: 1.1;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 1.2;
   margin: 0;
   padding: 0;
   margin-bottom: 1.5rem;
-  letter-spacing: -0.02em;
-  font-family: var(--font-spaceGrotesk), sans-serif;
+  letter-spacing: -0.05em;
 }
 
 h2 {
+  font-family: var(--font-inter), sans-serif;
   font-size: clamp(1.5rem, 2.5vw, 2rem);
-  /* ~24-32px */
   font-weight: 300;
   line-height: 1.2;
   margin: 0;
   padding: 0;
   margin-bottom: 1.25rem;
-  letter-spacing: -0.01em;
-  font-family: var(--font-spaceGrotesk), sans-serif;
+  letter-spacing: -0.05em;
 }
 
 h3 {
@@ -141,10 +139,12 @@ h6 {
 
 /* Texto do corpo otimizado */
 p {
-  font-size: clamp(1rem, 1vw, 1.125rem);
-  /* ~16-18px */
+  font-family: var(--font-inter), sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
   color: rgba(var(--color-almostBlack), 1);
   line-height: 1.6;
+  letter-spacing: -0.05em;
   margin: 0;
   padding: 0;
   margin-bottom: 1rem;

@@ -59,7 +59,7 @@
 }
 
 .CraftingMotto p {
-    font-family: var(--font-spaceGrotesk);
+    font-family: var(--font-inter);
     color: rgba(var(--color-stubbornWhite), 1);
     font-size: 1.25rem;
     display: flex;

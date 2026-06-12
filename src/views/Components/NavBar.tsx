@@ -4,6 +4,7 @@ import styles from '@/views/Components/NavBar.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import Button from '@/views/UI/Button';
+import { TbCalendarClock } from 'react-icons/tb';
 
 function NavBar() {
   const handleConversionClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -67,9 +68,8 @@ function NavBar() {
 
             <Button variant="primary" size="medium">
               <Link href="https://wa.me/5545991584114" target="_blank">
-                <span>
-                  Solicitar orçamento
-                </span>
+                <TbCalendarClock size={20} aria-hidden />
+                <span>Agendar Call</span>
               </Link>
             </Button>
           </div>

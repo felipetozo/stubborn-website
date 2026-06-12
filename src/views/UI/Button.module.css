@@ -1,7 +1,7 @@
 .button {
     border-radius: 0.4rem;
     font-weight: 500;
-    font-family: var(--font-spaceGrotesk);
+    font-family: var(--font-inter);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -17,6 +17,12 @@
 .button.disabled {
     opacity: 0.4;
     cursor: not-allowed;
+}
+
+.button a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 /* Variants */
