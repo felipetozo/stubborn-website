@@ -18,7 +18,7 @@
     padding: 1rem 1rem 1rem 1rem;
     background-color: rgba(var(--color-stubbornBlack), 0.5);
     border: 1px solid rgba(var(--color-stubbornWhite), 0.1);
-    border-radius: 1rem;
+    border-radius: 2rem;
     backdrop-filter: blur(1rem);
 }
 

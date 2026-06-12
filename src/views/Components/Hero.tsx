@@ -30,8 +30,8 @@ function Hero() {
           <Image
             src="/img/stubborn-portfolio-criacao-site-01-Metal-Laran.png"
             alt="Exemplo de projeto de site da Stubborn"
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: 'cover' }}
             priority
           />
         </div>
