@@ -170,43 +170,41 @@ O plano 1 é a porta de entrada com baixa fricção (site incluso elimina a prin
 
 ## 6. ICP principal — Plano Essencial
 
-### Perfil: Clínica de Saúde Independente BR
+### Perfil: Empresa Consolidada com Baixa Maturidade Digital
 
 **Definição em uma frase:**
-> Clínicas e consultórios de saúde no Brasil com site inexistente ou desatualizado, 1 a 5 profissionais, que pagam por múltiplas ferramentas desconectadas e querem centralizar operação e marketing num único lugar.
+> Indústrias, distribuidoras e empresas de serviços B2B com 5 ou mais anos no mercado, receita recorrente estabelecida, mas operação ainda dependente de planilhas e WhatsApp — sem site profissional ativo, sem CRM e sem visibilidade sobre o próprio pipeline comercial.
 
 ### Parâmetros de qualificação
 
 | Critério | Valor |
 |---|---|
 | Porte | ME, EPP |
-| Anos no mercado | Mínimo 2 anos |
-| Faturamento mínimo | R$ 15k/mês |
+| Anos no mercado | Mínimo 5 anos |
+| Faturamento mínimo | R$ 50k/mês |
 | Regime tributário | Simples Nacional ou Lucro Presumido |
 | País | Brasil |
-| Score mínimo de aprovação | 65 de 100 pts |
+| Score mínimo de aprovação | 60 de 100 pts |
 
 ### Segmentos com maior fit
-Psicologia · Nutrição · Odontologia · Fisioterapia · Medicina integrativa · Dermatologia
+Metalúrgicas e indústria de transformação · Distribuidoras e atacadistas · Construtoras e empreiteiras · Transportadoras e logística · Serviços B2B (manutenção, facilities, terceirização) · Fornecedores do agronegócio
 
 ### Exclusões
-Hospitais · Redes de franquia · Clínicas com TI próprio · Gestão por comitê · MEI sem equipe
+Empresas com TI interno ou ERP implantado · Startups com menos de 3 anos · Redes de franquia · Gestão por comitê ou conselho · Empresas de capital aberto
 
 ### Critérios de pontuação (total: 100 pts)
 
 | Critério | O que observar | Pts |
 |---|---|---|
-| Tem site ativo há mais de 1 ano | Site no ar com domínio próprio, não em construção e com conteúdo atualizado | 15 |
-| Usa 3 ou mais ferramentas pagas separadas | Menciona CRM, email marketing, agendamento, chatbot ou financeiro em ferramentas diferentes | 15 |
-| Profissional de saúde é também o dono do negócio | Decisor é o próprio médico, psicólogo, dentista etc. — não um gestor contratado | 10 |
-| Já investe em tráfego pago | Roda ou rodou campanhas no Google Ads ou Meta Ads nos últimos 6 meses | 10 |
-| Tem pelo menos 1 funcionário administrativo | Recepcionista, secretária ou assistente que opera ferramentas no dia a dia | 10 |
-| Tem presença ativa em redes sociais | Instagram ou LinkedIn com posts nos últimos 30 dias | 8 |
-| Faz agendamentos online | Usa link de agendamento no site, bio ou WhatsApp | 8 |
-| Mencionou dor com organização de clientes ou follow-up | Relata perder pacientes por falta de contato ou não ter histórico organizado | 8 |
-| Localizado em capital ou cidade com +200k habitantes | Verificar cidade de atuação principal pelo site ou perfil | 7 |
-| Tem avaliações positivas no Google | 4 estrelas ou mais com pelo menos 20 avaliações | 5 |
-| Já testou alguma ferramenta de IA | Menciona ChatGPT, IA para conteúdo ou atendimento automatizado | 4 |
+| Site inexistente ou com mais de 3 anos sem atualização | Domínio expirado, site em construção, layout de 2015 ou sem site próprio | 20 |
+| Gestão de clientes feita em planilha ou WhatsApp | Sem CRM formal — histórico de negociações disperso ou na cabeça do dono | 20 |
+| Dono é o principal tomador de decisão | Decisor é o próprio sócio-fundador, não um gestor contratado | 10 |
+| 5 ou mais anos no mercado | Empresa consolidada com carteira de clientes existente mas sem sistema | 10 |
+| Tem 3 ou mais funcionários operacionais | Equipe que já opera processos no dia a dia sem sistema unificado | 10 |
+| Não tem pipeline comercial estruturado | Vendas dependem de relacionamento e não de processo — sem funil visível | 10 |
+| Tem clientes recorrentes mas sem régua de follow-up | Perde recompra por falta de contato sistemático | 8 |
+| Localizado em polo industrial ou cidade com +100k habitantes | Verificar cidade de atuação e setor pelo site, LinkedIn ou CNPJ | 7 |
+| Demonstra curiosidade ou já tentou adotar tecnologia | Menciona tentativa de sistema anterior, planilha avançada ou interesse em IA | 5 |
 
 ---
 
@@ -226,8 +224,8 @@ Hospitais · Redes de franquia · Clínicas com TI próprio · Gestão por comit
 - [ ] Criar link claro para admin.stubborn.com.br
 
 ### Prioridade 3 — Aquisição
-- [ ] Criar landing page específica para o ICP de clínicas de saúde
-- [ ] Ativar buscador de clientes no próprio Admin com o ICP configurado
+- [ ] Criar landing page específica para o ICP: empresas consolidadas com baixa maturidade digital
+- [ ] Ativar buscador de clientes no próprio Admin com o ICP configurado (segmentos: indústria, distribuição, serviços B2B)
 - [ ] Definir régua de upgrade: quando e como abordar clientes do plano Essencial para migrar para o Crescimento
 
 ---

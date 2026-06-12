@@ -12,17 +12,36 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+const siteUrl = 'https://stubborn.com.br';
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
   if (!post) return {};
+
+  const url = `${siteUrl}/blog/${slug}`;
+  const image = post.coverImage ?? `${siteUrl}/img/stubborn-logotipo.png`;
+
   return {
     title: post.title,
     description: post.excerpt ?? undefined,
+    alternates: { canonical: url },
     openGraph: {
+      type: 'article',
+      url,
       title: post.title,
       description: post.excerpt ?? undefined,
-      images: post.coverImage ? [post.coverImage] : [],
+      images: [{ url: image, width: 1200, height: 630, alt: post.title }],
+      publishedTime: post.publishedAt?.toISOString(),
+      authors: [post.authorName],
+      siteName: 'Stubborn',
+      locale: 'pt_BR',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt ?? undefined,
+      images: [image],
     },
   };
 }
@@ -60,8 +79,39 @@ export default async function BlogPostPage({ params }: Props) {
   const related = await getRelatedPosts(slug, post.category, 3);
   const contentWithIds = injectHeadingIds(post.content);
 
+  const postUrl = `${siteUrl}/blog/${slug}`;
+  const image = post.coverImage ?? `${siteUrl}/img/stubborn-logotipo.png`;
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt ?? undefined,
+    image,
+    url: postUrl,
+    datePublished: post.publishedAt?.toISOString(),
+    author: { '@type': 'Person', name: post.authorName },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Stubborn',
+      logo: { '@type': 'ImageObject', url: `${siteUrl}/img/stubborn-logotipo.png` },
+    },
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Início', item: siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${siteUrl}/blog` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: postUrl },
+    ],
+  };
+
   return (
     <main className={styles.main}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* Breadcrumb */}
       <div className={styles.breadcrumbWrap}>
         <div className={styles.breadcrumb}>
