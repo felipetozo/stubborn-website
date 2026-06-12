@@ -3,41 +3,50 @@
 import React from 'react';
 import styles from './FormField.module.css';
 
-interface FormSelectionProps {
-    id: string;
-    label: string;
-    value: string;
-    onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-    error?: string;
+interface SelectOption {
+  value: string;
+  label: string;
 }
 
+interface FormSelectionProps {
+  id: string;
+  label: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  error?: string;
+  placeholder?: string;
+  options?: SelectOption[];
+}
+
+const defaultOptions: SelectOption[] = [
+  { value: 'site', label: 'Criação de site corporativo, institucional ou landing page' },
+  { value: 'sistema', label: 'Sistema interno, CRM ou Web App' },
+  { value: 'chatbot', label: 'Chatbot com Inteligência Artificial' },
+  { value: 'delivery', label: 'Sistema para Delivery ou Agendamento' },
+  { value: 'outro', label: 'Outro' },
+];
+
 const FormSelection: React.FC<FormSelectionProps> = ({
-    id,
-    label,
-    value,
-    onChange,
-    error
+  id,
+  label,
+  value,
+  onChange,
+  error,
+  placeholder = 'Selecione o assunto',
+  options = defaultOptions,
 }) => {
-    return (
-        <div className={styles.formInput}>
-            <label htmlFor={id} className={styles.label}>{label}</label>
-            <select
-                id={id}
-                name={id}
-                value={value}
-                onChange={onChange}
-                className={styles.input}
-            >
-                <option value="" disabled>Selecione o assunto</option>
-                <option value="site">Criação de site corporativo, institucional ou landing page</option>
-                <option value="sistema">Sistema interno, CRM ou Web App</option>
-                <option value="diagnostico">Chatbot com Inteligência Artificial</option>
-                <option value="manutencao">Sistema para Delivery ou Agendamento</option>
-                <option value="outro">Outro</option>
-            </select>
-            {error && <div className={styles.error}>{error}</div>}
-        </div>
-    );
+  return (
+    <div className={styles.formInput}>
+      <label htmlFor={id} className={styles.label}>{label}</label>
+      <select id={id} name={id} value={value} onChange={onChange} className={styles.input}>
+        <option value="" disabled>{placeholder}</option>
+        {options.map((opt) => (
+          <option key={opt.value} value={opt.value}>{opt.label}</option>
+        ))}
+      </select>
+      {error && <div className={styles.error}>{error}</div>}
+    </div>
+  );
 };
 
 export default FormSelection;

@@ -1,0 +1,94 @@
+{
+  "Nav": {
+    "inicio": "Início",
+    "sobre": "Sobre",
+    "portfolio": "Portfolio",
+    "contato": "Contato",
+    "cta": "Agendar Call"
+  },
+  "Hero": {
+    "eyebrow": "Painel + Agência. Tudo em uma assinatura.",
+    "title": "Seu negócio organizado, crescendo e com alguém olhando junto.",
+    "description": "A Stubborn combina um painel completo com IA e os serviços de uma agência de marketing. Em planos que crescem com você, do básico ao integral.",
+    "cta": "Agendar Call"
+  },
+  "Services": {
+    "heading": "Experiências digitais sob medida para marcas que querem evoluir com consistência.",
+    "subheading": "Construímos e evoluímos soluções digitais de forma contínua, unindo design, desenvolvimento e suporte para acompanhar o crescimento da sua empresa.",
+    "card1Title": "Design de interface e experiência do usuário",
+    "card1Desc": "Layouts originais, funcionais e centrados na experiência. Criamos interfaces sob medida que traduzem sua marca em design e geram resultado real.",
+    "card2Title": "Desenvolvimento de sites e sistemas web",
+    "card2Desc": "Sites e web apps rápidos, responsivos e escaláveis. Cuidamos da parte técnica para que sua ideia ganhe forma com performance, segurança e solidez.",
+    "card3Title": "Manutenção e suporte contínuo",
+    "card3Desc": "Atualizações, correções, melhorias contínuas. Garantimos que tudo funcione sempre bem — com suporte ágil e atenção aos detalhes.",
+    "cta": "Solicitar orçamento",
+    "items": {
+      "websites": "Websites",
+      "landingPages": "Landing Pages",
+      "webApps": "Web App's",
+      "ecommerce": "Lojas Online / E-Commerce",
+      "portaisInternos": "Portais Internos",
+      "newsletters": "Newsletters",
+      "agendamento": "Sistemas de Agendamento",
+      "buscadorIA": "Buscador Inteligente com IA",
+      "integracoes": "Integrações e API's",
+      "chatbot": "Chatbot com IA",
+      "delivery": "Sistemas de Delivery"
+    }
+  },
+  "Work": {
+    "heading": "Mais do que projetos, ativos vivos. Pensados para evoluir com cada empresa.",
+    "subheading": "Nossa entrega não é um fim, mas sempre um começo. Acreditamos em soluções que crescem junto com a sua empresa — cada entrega é parte da sua função digital."
+  },
+  "Blog": {
+    "badge": "Blog",
+    "title": "Do nosso blog",
+    "description": "Artigos, guias e estratégias para crescer com mais inteligência.",
+    "seeAll": "Ver todos os artigos →",
+    "pageLabel": "Blog",
+    "pageTitle": "Insights para o seu negócio",
+    "pageSubtitle": "Artigos, guias e estratégias para crescer com mais inteligência.",
+    "all": "Todos",
+    "noArticles": "Nenhum artigo publicado ainda.",
+    "minRead": "{minutes} min de leitura",
+    "minShort": "{minutes} min"
+  },
+  "Footer": {
+    "contactTitle": "Entre em contato",
+    "contactDesc": "Tem um projeto em mente? Vamos colocá-lo no mundo juntos. Preencha o formulário e entraremos em contato em breve.",
+    "rights": "Todos direitos reservados",
+    "form": {
+      "name": "Nome completo",
+      "namePlaceholder": "Introduza seu nome completo",
+      "email": "E-mail",
+      "emailPlaceholder": "Introduza seu e-mail",
+      "phone": "Telefone / Whatsapp",
+      "phonePlaceholder": "Introduza seu Whatsapp",
+      "subject": "Assunto",
+      "subjectPlaceholder": "Selecione o assunto",
+      "submit": "Enviar solicitação",
+      "submitting": "Enviando...",
+      "errorForm": "Por favor, corrija os erros no formulário.",
+      "errorConnection": "Erro de conexão. Verifique sua internet e tente novamente.",
+      "nameRequired": "Nome completo é obrigatório",
+      "emailRequired": "E-mail é obrigatório",
+      "emailInvalid": "E-mail inválido",
+      "phoneRequired": "WhatsApp é obrigatório",
+      "subjectRequired": "Assunto é obrigatório",
+      "options": {
+        "placeholder": "Selecione o assunto",
+        "site": "Criação de site corporativo, institucional ou landing page",
+        "sistema": "Sistema interno, CRM ou Web App",
+        "chatbot": "Chatbot com Inteligência Artificial",
+        "delivery": "Sistema para Delivery ou Agendamento",
+        "outro": "Outro"
+      }
+    }
+  },
+  "Meta": {
+    "title": "Stubborn — Pare de gerenciar sua empresa no WhatsApp e na planilha",
+    "description": "A Stubborn organiza o comercial, coloca o site no ar e acompanha a operação da sua empresa todo mês. Painel com CRM e IA + agência de marketing em uma única assinatura. A partir de R$ 500/mês.",
+    "blogTitle": "Blog — Stubborn",
+    "blogDescription": "Artigos, guias e insights para o seu negócio."
+  }
+}

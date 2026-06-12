@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/navigation';
+import { useTranslations, useLocale } from 'next-intl';
 import styles from './BlogSection.module.css';
 
 type Post = {
@@ -16,16 +17,14 @@ type Post = {
   publishedAt: string | null;
 };
 
-function formatDate(date: string | null) {
+function formatDate(date: string | null, locale: string) {
   if (!date) return '';
-  return new Intl.DateTimeFormat('pt-BR', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-  }).format(new Date(date));
+  return new Intl.DateTimeFormat(locale, { day: '2-digit', month: 'short', year: 'numeric' }).format(new Date(date));
 }
 
 export default function BlogSection() {
+  const t = useTranslations('Blog');
+  const locale = useLocale();
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
@@ -36,9 +35,7 @@ export default function BlogSection() {
         if (active && data?.ok) setPosts(data.posts as Post[]);
       })
       .catch(() => {});
-    return () => {
-      active = false;
-    };
+    return () => { active = false; };
   }, []);
 
   if (posts.length === 0) return null;
@@ -47,13 +44,9 @@ export default function BlogSection() {
     <section className={styles.section} aria-labelledby="landing-blog-title">
       <div className={styles.inner}>
         <header className={styles.header}>
-          <span className={styles.badge}>Blog</span>
-          <h2 id="landing-blog-title" className={styles.title}>
-            Do nosso blog
-          </h2>
-          <p className={styles.lead}>
-            Artigos, guias e estratégias para crescer com mais inteligência.
-          </p>
+          <span className={styles.badge}>{t('badge')}</span>
+          <h2 id="landing-blog-title" className={styles.title}>{t('title')}</h2>
+          <p className={styles.lead}>{t('description')}</p>
         </header>
 
         <div className={styles.grid}>
@@ -73,7 +66,7 @@ export default function BlogSection() {
                 <div className={styles.cardMeta}>
                   <span>{post.authorName}</span>
                   <span className={styles.dot}>·</span>
-                  <span>{formatDate(post.publishedAt)}</span>
+                  <span>{formatDate(post.publishedAt, locale)}</span>
                 </div>
               </div>
             </Link>
@@ -81,9 +74,7 @@ export default function BlogSection() {
         </div>
 
         <div className={styles.footer}>
-          <Link href="/blog" className={styles.allLink}>
-            Ver todos os artigos →
-          </Link>
+          <Link href="/blog" className={styles.allLink}>{t('seeAll')}</Link>
         </div>
       </div>
     </section>

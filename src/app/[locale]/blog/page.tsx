@@ -2,26 +2,34 @@ export const dynamic = 'force-dynamic';
 
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/navigation';
+import { getTranslations } from 'next-intl/server';
 import { getPublishedPosts, getBlogCategories } from '@/actions/blogActions';
-import styles from './page.module.css';
+import styles from '../../blog/page.module.css';
 
 type Props = {
+  params: Promise<{ locale: string }>;
   searchParams: Promise<{ category?: string }>;
 };
 
-export const metadata: Metadata = {
-  title: 'Blog',
-  description: 'Artigos, guias e insights para o seu negócio.',
-};
-
-function formatDate(date: Date | null) {
-  if (!date) return '';
-  return new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }).format(new Date(date));
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Meta' });
+  return {
+    title: t('blogTitle'),
+    description: t('blogDescription'),
+  };
 }
 
-export default async function BlogPage({ searchParams }: Props) {
+function formatDate(date: Date | null, locale: string) {
+  if (!date) return '';
+  return new Intl.DateTimeFormat(locale, { day: '2-digit', month: 'short', year: 'numeric' }).format(new Date(date));
+}
+
+export default async function BlogPage({ params, searchParams }: Props) {
+  const { locale } = await params;
   const { category } = await searchParams;
+  const t = await getTranslations({ locale, namespace: 'Blog' });
 
   const [posts, categories] = await Promise.all([
     getPublishedPosts(category),
@@ -34,11 +42,9 @@ export default async function BlogPage({ searchParams }: Props) {
     <main className={styles.main}>
       <div className={styles.wrapper}>
         <header className={styles.pageHeader}>
-          <p className={styles.pageLabel}>Blog</p>
-          <h1 className={styles.pageTitle}>Insights para o seu negócio</h1>
-          <p className={styles.pageSubtitle}>
-            Artigos, guias e estratégias para crescer com mais inteligência.
-          </p>
+          <p className={styles.pageLabel}>{t('pageLabel')}</p>
+          <h1 className={styles.pageTitle}>{t('pageTitle')}</h1>
+          <p className={styles.pageSubtitle}>{t('pageSubtitle')}</p>
         </header>
 
         {categories.length > 0 && (
@@ -47,7 +53,7 @@ export default async function BlogPage({ searchParams }: Props) {
               href="/blog"
               className={`${styles.categoryChip} ${!category ? styles.categoryChipActive : ''}`}
             >
-              Todos
+              {t('all')}
             </Link>
             {categories.map((cat) => (
               <Link
@@ -63,37 +69,30 @@ export default async function BlogPage({ searchParams }: Props) {
 
         {featured && (
           <Link href={`/blog/${featured.slug}`} className={styles.featured}>
-            {featured.coverImage && (
+            {featured.coverImage ? (
               <div className={styles.featuredImg}>
                 <Image src={featured.coverImage} alt={featured.title} fill style={{ objectFit: 'cover' }} />
               </div>
+            ) : (
+              <div className={styles.featuredImgPlaceholder} />
             )}
-            {!featured.coverImage && <div className={styles.featuredImgPlaceholder} />}
             <div className={styles.featuredBody}>
               {featured.category && <span className={styles.categoryTag}>{featured.category}</span>}
               <h2 className={styles.featuredTitle}>{featured.title}</h2>
               {featured.excerpt && <p className={styles.featuredExcerpt}>{featured.excerpt}</p>}
               <div className={styles.featuredMeta}>
                 {featured.authorImage ? (
-                  <Image
-                    src={featured.authorImage}
-                    alt={featured.authorName}
-                    width={32}
-                    height={32}
-                    className={styles.authorAvatar}
-                  />
+                  <Image src={featured.authorImage} alt={featured.authorName} width={32} height={32} className={styles.authorAvatar} />
                 ) : (
-                  <span className={styles.authorAvatarFallback}>
-                    {featured.authorName.charAt(0)}
-                  </span>
+                  <span className={styles.authorAvatarFallback}>{featured.authorName.charAt(0)}</span>
                 )}
                 <span className={styles.authorName}>{featured.authorName}</span>
                 <span className={styles.metaDot}>·</span>
-                <span className={styles.metaDate}>{formatDate(featured.publishedAt)}</span>
+                <span className={styles.metaDate}>{formatDate(featured.publishedAt, locale)}</span>
                 {featured.readTimeMinutes && (
                   <>
                     <span className={styles.metaDot}>·</span>
-                    <span className={styles.metaRead}>{featured.readTimeMinutes} min de leitura</span>
+                    <span className={styles.metaRead}>{t('minRead', { minutes: featured.readTimeMinutes })}</span>
                   </>
                 )}
               </div>
@@ -118,25 +117,17 @@ export default async function BlogPage({ searchParams }: Props) {
                   {post.excerpt && <p className={styles.cardExcerpt}>{post.excerpt}</p>}
                   <div className={styles.cardMeta}>
                     {post.authorImage ? (
-                      <Image
-                        src={post.authorImage}
-                        alt={post.authorName}
-                        width={24}
-                        height={24}
-                        className={styles.authorAvatar}
-                      />
+                      <Image src={post.authorImage} alt={post.authorName} width={24} height={24} className={styles.authorAvatar} />
                     ) : (
-                      <span className={styles.authorAvatarFallbackSm}>
-                        {post.authorName.charAt(0)}
-                      </span>
+                      <span className={styles.authorAvatarFallbackSm}>{post.authorName.charAt(0)}</span>
                     )}
                     <span className={styles.authorName}>{post.authorName}</span>
                     <span className={styles.metaDot}>·</span>
-                    <span className={styles.metaDate}>{formatDate(post.publishedAt)}</span>
+                    <span className={styles.metaDate}>{formatDate(post.publishedAt, locale)}</span>
                     {post.readTimeMinutes && (
                       <>
                         <span className={styles.metaDot}>·</span>
-                        <span className={styles.metaRead}>{post.readTimeMinutes} min</span>
+                        <span className={styles.metaRead}>{t('minShort', { minutes: post.readTimeMinutes })}</span>
                       </>
                     )}
                   </div>
@@ -148,7 +139,7 @@ export default async function BlogPage({ searchParams }: Props) {
 
         {posts.length === 0 && (
           <div className={styles.empty}>
-            <p>Nenhum artigo publicado ainda.</p>
+            <p>{t('noArticles')}</p>
           </div>
         )}
       </div>

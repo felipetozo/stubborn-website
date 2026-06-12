@@ -2,7 +2,7 @@
 
 .HeroSection {
     width: 100%;
-    padding: 5rem 0;
+    padding: 2.5rem 0 0 0;
     min-height: 100vh;
 }
 
@@ -13,7 +13,7 @@
     flex-direction: column;
     align-items: center;
     gap: 5rem;
-    max-width: 1600px;
+    max-width: 100rem;
     text-align: center;
 }
 
@@ -22,10 +22,12 @@
     font-family: 'Inter', sans-serif;
     font-size: 0.875rem;
     font-weight: 300;
+    margin: 0 auto;
+    max-width: max-content;
     letter-spacing: -0.05em;
-    color: rgba(var(--color-stubbornBlack), 0.50);
-    border: 1px solid rgba(var(--color-stubbornBlack), 0.20);
-    border-radius: 100%;
+    color: rgba(var(--color-stubbornWhite), 0.50);
+    border: 1px solid rgba(var(--color-stubbornWhite), 0.20);
+    border-radius: 100rem;
     padding: 1rem 2rem;
 }
 

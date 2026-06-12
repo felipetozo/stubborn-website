@@ -1,0 +1,94 @@
+{
+  "Nav": {
+    "inicio": "Inicio",
+    "sobre": "Sobre nosotros",
+    "portfolio": "Portfolio",
+    "contato": "Contacto",
+    "cta": "Agendar llamada"
+  },
+  "Hero": {
+    "eyebrow": "Panel + Agencia. Todo en una suscripción.",
+    "title": "Tu negocio organizado, creciendo y con alguien mirando junto a ti.",
+    "description": "Stubborn combina un panel completo con IA y los servicios de una agencia de marketing. En planes que crecen contigo, desde el básico al integral.",
+    "cta": "Agendar llamada"
+  },
+  "Services": {
+    "heading": "Experiencias digitales a medida para marcas que quieren crecer con consistencia.",
+    "subheading": "Construimos y evolucionamos soluciones digitales de forma continua, uniendo diseño, desarrollo y soporte para acompañar el crecimiento de tu empresa.",
+    "card1Title": "Diseño de interfaces y experiencia de usuario",
+    "card1Desc": "Diseños originales, funcionales y centrados en la experiencia. Creamos interfaces a medida que traducen tu marca en diseño y generan resultados reales.",
+    "card2Title": "Desarrollo de sitios web y sistemas web",
+    "card2Desc": "Sitios y web apps rápidos, responsive y escalables. Nos encargamos de la parte técnica para que tu idea tome forma con rendimiento, seguridad y solidez.",
+    "card3Title": "Mantenimiento y soporte continuo",
+    "card3Desc": "Actualizaciones, correcciones, mejoras continuas. Garantizamos que todo funcione siempre bien — con soporte ágil y atención al detalle.",
+    "cta": "Solicitar presupuesto",
+    "items": {
+      "websites": "Sitios Web",
+      "landingPages": "Landing Pages",
+      "webApps": "Web Apps",
+      "ecommerce": "Tiendas Online / E-Commerce",
+      "portaisInternos": "Portales Internos",
+      "newsletters": "Newsletters",
+      "agendamento": "Sistemas de Agendamiento",
+      "buscadorIA": "Buscador Inteligente con IA",
+      "integracoes": "Integraciones y APIs",
+      "chatbot": "Chatbot con IA",
+      "delivery": "Sistemas de Delivery"
+    }
+  },
+  "Work": {
+    "heading": "Más que proyectos, activos vivos. Pensados para evolucionar con cada empresa.",
+    "subheading": "Nuestra entrega no es un fin, sino siempre un comienzo. Creemos en soluciones que crecen junto con tu empresa — cada entrega es parte de tu función digital."
+  },
+  "Blog": {
+    "badge": "Blog",
+    "title": "De nuestro blog",
+    "description": "Artículos, guías y estrategias para crecer con más inteligencia.",
+    "seeAll": "Ver todos los artículos →",
+    "pageLabel": "Blog",
+    "pageTitle": "Insights para tu negocio",
+    "pageSubtitle": "Artículos, guías y estrategias para crecer con más inteligencia.",
+    "all": "Todos",
+    "noArticles": "Ningún artículo publicado todavía.",
+    "minRead": "{minutes} min de lectura",
+    "minShort": "{minutes} min"
+  },
+  "Footer": {
+    "contactTitle": "Ponte en contacto",
+    "contactDesc": "¿Tienes un proyecto en mente? Vamos a llevarlo al mundo juntos. Rellena el formulario y te contactaremos pronto.",
+    "rights": "Todos los derechos reservados",
+    "form": {
+      "name": "Nombre completo",
+      "namePlaceholder": "Introduce tu nombre completo",
+      "email": "Correo electrónico",
+      "emailPlaceholder": "Introduce tu correo electrónico",
+      "phone": "Teléfono / WhatsApp",
+      "phonePlaceholder": "Introduce tu WhatsApp",
+      "subject": "Asunto",
+      "subjectPlaceholder": "Selecciona el asunto",
+      "submit": "Enviar solicitud",
+      "submitting": "Enviando...",
+      "errorForm": "Por favor, corrige los errores del formulario.",
+      "errorConnection": "Error de conexión. Verifica tu internet e inténtalo de nuevo.",
+      "nameRequired": "El nombre completo es obligatorio",
+      "emailRequired": "El correo electrónico es obligatorio",
+      "emailInvalid": "Correo electrónico inválido",
+      "phoneRequired": "El WhatsApp es obligatorio",
+      "subjectRequired": "El asunto es obligatorio",
+      "options": {
+        "placeholder": "Selecciona el asunto",
+        "site": "Creación de sitio corporativo, institucional o landing page",
+        "sistema": "Sistema interno, CRM o Web App",
+        "chatbot": "Chatbot con Inteligencia Artificial",
+        "delivery": "Sistema para Delivery o Agendamiento",
+        "outro": "Otro"
+      }
+    }
+  },
+  "Meta": {
+    "title": "Stubborn — Deja de gestionar tu empresa en WhatsApp y hojas de cálculo",
+    "description": "Stubborn organiza tu área comercial, pone tu sitio web en marcha y acompaña tu operación cada mes. Panel con CRM e IA + agencia de marketing en una sola suscripción.",
+    "blogTitle": "Blog — Stubborn",
+    "blogDescription": "Artículos, guías e insights para tu negocio."
+  }
+}

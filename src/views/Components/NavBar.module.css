@@ -16,11 +16,10 @@
     margin: 0 auto;
     max-width: 1600px;
     padding: 1rem 1rem 1rem 1rem;
-    background-color: rgba(var(--color-stubbornBlack), 0.75);
+    background-color: rgba(var(--color-stubbornBlack), 0.5);
     border: 1px solid rgba(var(--color-stubbornWhite), 0.1);
     border-radius: 1rem;
     backdrop-filter: blur(1rem);
-    -webkit-backdrop-filter: blur(1rem);
 }
 
 .navBarLogo {
@@ -46,4 +45,85 @@
         display: block;
     }
 
+}
+
+.navBarButton {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* ── Language Switcher ── */
+
+.langSwitcher {
+    position: relative;
+}
+
+.langTrigger {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: none;
+    color: rgba(var(--color-stubbornWhite), 0.6);
+    padding: 0.45rem;
+    cursor: pointer;
+    transition: color 0.15s ease;
+}
+
+.langTrigger:hover {
+    color: rgba(var(--color-stubbornWhite), 1);
+}
+
+.langDropdown {
+    position: absolute;
+    top: calc(100% + 2rem);
+    left: 50%;
+    transform: translateX(-50%) translateY(-6px);
+    list-style: none;
+    margin: 0;
+    padding: 0.35rem;
+    background-color: rgba(var(--color-stubbornBlack), 0.95);
+    border: 1px solid rgba(var(--color-stubbornWhite), 0.1);
+    border-radius: 0.75rem;
+    backdrop-filter: blur(1rem);
+    min-width: 130px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.langDropdownOpen {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.langOption {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    border-radius: 0.5rem;
+    color: rgba(var(--color-stubbornWhite), 0.6);
+    font-family: var(--font-inter);
+    font-size: 0.8rem;
+    font-weight: 400;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.langOption:hover {
+    background: rgba(var(--color-stubbornWhite), 0.06);
+    color: rgba(var(--color-stubbornWhite), 1);
+}
+
+.langOptionActive {
+    color: rgba(var(--color-stubbornWhite), 1);
+    font-weight: 600;
+    background: rgba(var(--color-stubbornBlue), 0.15);
 }

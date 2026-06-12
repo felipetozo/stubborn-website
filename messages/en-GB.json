@@ -1,0 +1,94 @@
+{
+  "Nav": {
+    "inicio": "Home",
+    "sobre": "About",
+    "portfolio": "Portfolio",
+    "contato": "Contact",
+    "cta": "Book a Call"
+  },
+  "Hero": {
+    "eyebrow": "Platform + Agency. All in one subscription.",
+    "title": "Your business organised, growing, and with someone watching over it.",
+    "description": "Stubborn combines a complete AI-powered platform with the services of a marketing agency. In plans that grow with you, from basic to all-inclusive.",
+    "cta": "Book a Call"
+  },
+  "Services": {
+    "heading": "Bespoke digital experiences for brands that want to grow with consistency.",
+    "subheading": "We build and evolve digital solutions continuously, combining design, development and support to keep up with your company's growth.",
+    "card1Title": "Interface design and user experience",
+    "card1Desc": "Original, functional layouts centred on the user experience. We create bespoke interfaces that translate your brand into design and deliver real results.",
+    "card2Title": "Website and web system development",
+    "card2Desc": "Fast, responsive and scalable websites and web apps. We handle the technical side so your idea takes shape with performance, security and robustness.",
+    "card3Title": "Ongoing maintenance and support",
+    "card3Desc": "Updates, fixes, continuous improvements. We ensure everything always works well — with agile support and attention to detail.",
+    "cta": "Request a quote",
+    "items": {
+      "websites": "Websites",
+      "landingPages": "Landing Pages",
+      "webApps": "Web Apps",
+      "ecommerce": "Online Shops / E-Commerce",
+      "portaisInternos": "Internal Portals",
+      "newsletters": "Newsletters",
+      "agendamento": "Booking Systems",
+      "buscadorIA": "AI-Powered Smart Search",
+      "integracoes": "Integrations & APIs",
+      "chatbot": "AI Chatbot",
+      "delivery": "Delivery Systems"
+    }
+  },
+  "Work": {
+    "heading": "More than projects — living assets. Built to evolve with each business.",
+    "subheading": "Our delivery is never an end, but always a beginning. We believe in solutions that grow alongside your company — every delivery is part of your digital function."
+  },
+  "Blog": {
+    "badge": "Blog",
+    "title": "From our blog",
+    "description": "Articles, guides and strategies to grow smarter.",
+    "seeAll": "See all articles →",
+    "pageLabel": "Blog",
+    "pageTitle": "Insights for your business",
+    "pageSubtitle": "Articles, guides and strategies to grow smarter.",
+    "all": "All",
+    "noArticles": "No articles published yet.",
+    "minRead": "{minutes} min read",
+    "minShort": "{minutes} min"
+  },
+  "Footer": {
+    "contactTitle": "Get in touch",
+    "contactDesc": "Have a project in mind? Let's bring it to life together. Fill in the form and we'll be in touch shortly.",
+    "rights": "All rights reserved",
+    "form": {
+      "name": "Full name",
+      "namePlaceholder": "Enter your full name",
+      "email": "E-mail",
+      "emailPlaceholder": "Enter your e-mail",
+      "phone": "Phone / WhatsApp",
+      "phonePlaceholder": "Enter your WhatsApp",
+      "subject": "Subject",
+      "subjectPlaceholder": "Select a subject",
+      "submit": "Send request",
+      "submitting": "Sending...",
+      "errorForm": "Please correct the errors in the form.",
+      "errorConnection": "Connection error. Check your internet and try again.",
+      "nameRequired": "Full name is required",
+      "emailRequired": "E-mail is required",
+      "emailInvalid": "Invalid e-mail",
+      "phoneRequired": "WhatsApp is required",
+      "subjectRequired": "Subject is required",
+      "options": {
+        "placeholder": "Select a subject",
+        "site": "Corporate, institutional or landing page website",
+        "sistema": "Internal system, CRM or Web App",
+        "chatbot": "AI Chatbot",
+        "delivery": "Delivery or Booking System",
+        "outro": "Other"
+      }
+    }
+  },
+  "Meta": {
+    "title": "Stubborn — Stop managing your business on WhatsApp and spreadsheets",
+    "description": "Stubborn organises your sales, gets your website live, and monitors your business every month. CRM and AI platform + marketing agency in a single subscription. From R$ 500/month.",
+    "blogTitle": "Blog — Stubborn",
+    "blogDescription": "Articles, guides and insights for your business."
+  }
+}

@@ -3,24 +3,26 @@ export const dynamic = 'force-dynamic';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/navigation';
+import { getTranslations } from 'next-intl/server';
 import { getPostBySlug, getRelatedPosts } from '@/actions/blogActions';
-import TableOfContents from './TableOfContents';
-import styles from './page.module.css';
+import TableOfContents from '../../../blog/[slug]/TableOfContents';
+import styles from '../../../blog/[slug]/page.module.css';
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
 const siteUrl = 'https://stubborn.com.br';
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const post = await getPostBySlug(slug);
   if (!post) return {};
 
   const url = `${siteUrl}/blog/${slug}`;
   const image = post.coverImage ?? `${siteUrl}/img/stubborn-logotipo.png`;
+  const ogLocale = locale === 'pt-BR' ? 'pt_BR' : locale === 'en-GB' ? 'en_GB' : 'es_ES';
 
   return {
     title: post.title,
@@ -35,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: post.publishedAt?.toISOString(),
       authors: [post.authorName],
       siteName: 'Stubborn',
-      locale: 'pt_BR',
+      locale: ogLocale,
     },
     twitter: {
       card: 'summary_large_image',
@@ -46,11 +48,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-function formatDate(date: Date | null) {
+function formatDate(date: Date | null, locale: string) {
   if (!date) return '';
-  return new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' }).format(
-    new Date(date)
-  );
+  return new Intl.DateTimeFormat(locale, { day: '2-digit', month: 'long', year: 'numeric' }).format(new Date(date));
 }
 
 function injectHeadingIds(html: string): string {
@@ -71,7 +71,8 @@ function injectHeadingIds(html: string): string {
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Blog' });
 
   const post = await getPostBySlug(slug);
   if (!post || !post.published) notFound();
@@ -112,7 +113,7 @@ export default async function BlogPostPage({ params }: Props) {
     <main className={styles.main}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      {/* Breadcrumb */}
+
       <div className={styles.breadcrumbWrap}>
         <div className={styles.breadcrumb}>
           <Link href="/" className={styles.breadcrumbLink}>Início</Link>
@@ -123,22 +124,14 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       </div>
 
-      {/* Hero */}
       <header className={styles.hero}>
         <div className={styles.heroInner}>
           {post.category && <span className={styles.categoryTag}>{post.category}</span>}
           <h1 className={styles.title}>{post.title}</h1>
           {post.excerpt && <p className={styles.excerpt}>{post.excerpt}</p>}
-
           <div className={styles.heroMeta}>
             {post.authorImage ? (
-              <Image
-                src={post.authorImage}
-                alt={post.authorName}
-                width={44}
-                height={44}
-                className={styles.authorAvatar}
-              />
+              <Image src={post.authorImage} alt={post.authorName} width={44} height={44} className={styles.authorAvatar} />
             ) : (
               <span className={styles.authorAvatarFallback}>{post.authorName.charAt(0)}</span>
             )}
@@ -148,19 +141,18 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
             <div className={styles.heroMetaDivider} />
             <time className={styles.metaDate} dateTime={post.publishedAt?.toISOString()}>
-              {formatDate(post.publishedAt)}
+              {formatDate(post.publishedAt, locale)}
             </time>
             {post.readTimeMinutes && (
               <>
                 <span className={styles.metaDot}>·</span>
-                <span className={styles.metaRead}>{post.readTimeMinutes} min de leitura</span>
+                <span className={styles.metaRead}>{t('minRead', { minutes: post.readTimeMinutes })}</span>
               </>
             )}
           </div>
         </div>
       </header>
 
-      {/* Cover */}
       {post.coverImage && (
         <div className={styles.coverWrap}>
           <div className={styles.coverImg}>
@@ -169,21 +161,15 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       )}
 
-      {/* Body layout */}
       <div className={styles.layout}>
         <div className={styles.aside}>
           <div className={styles.stickyAside}>
             <TableOfContents contentHtml={contentWithIds} />
           </div>
         </div>
-
-        <article
-          className={styles.article}
-          dangerouslySetInnerHTML={{ __html: contentWithIds }}
-        />
+        <article className={styles.article} dangerouslySetInnerHTML={{ __html: contentWithIds }} />
       </div>
 
-      {/* Related posts */}
       {related.length > 0 && (
         <section className={styles.relatedSection}>
           <div className={styles.relatedInner}>
