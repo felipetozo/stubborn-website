@@ -48,6 +48,11 @@ export function previewUrl(filePath: string) {
   return `/api/drive/preview?path=${encodeURIComponent(filePath)}`
 }
 
+export function thumbnailUrl(filePath: string, name?: string) {
+  const n = name ? `&name=${encodeURIComponent(name)}` : ''
+  return `/api/drive/thumbnail?path=${encodeURIComponent(filePath)}${n}`
+}
+
 export function getFileIcon(name: string): { Icon: LucideIcon; color: string } {
   const ext = fileExt(name)
   if (VIDEO_EXTS.includes(ext))

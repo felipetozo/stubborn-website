@@ -1,6 +1,7 @@
 import { Loader2, Clock } from 'lucide-react'
 import type { DriveFile } from '../types'
-import { getFileIcon, isMedia, isImage, previewUrl, formatSize, formatDate } from '../utils'
+import { Thumb } from './Thumb'
+import { getFileIcon, isMedia, formatSize, formatDate } from '../utils'
 
 interface RecentViewProps {
   recentFiles: DriveFile[]
@@ -58,24 +59,12 @@ export function RecentView({ recentFiles, loading, onNavigate }: RecentViewProps
                         className="shrink-0 rounded overflow-hidden"
                         style={{ width: 48, height: 36, background: '#111' }}
                       >
-                        {isImage(file.name) ? (
-                          <img
-                            src={previewUrl(file.path)}
-                            alt={file.name}
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                            draggable={false}
-                          />
-                        ) : (
-                          <video
-                            src={previewUrl(file.path)}
-                            className="w-full h-full object-cover"
-                            preload="metadata"
-                            muted
-                            playsInline
-                            draggable={false}
-                          />
-                        )}
+                        <Thumb
+                          name={file.name}
+                          path={file.path}
+                          className="w-full h-full object-cover"
+                          iconSize={16}
+                        />
                       </div>
                     ) : (
                       <Icon size={15} style={{ color }} />

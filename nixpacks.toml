@@ -1,0 +1,4 @@
+# Adiciona o ffmpeg ao build (usado pelo /api/drive/thumbnail para gerar
+# miniaturas de vídeo). aptPkgs é aditivo — não interfere na detecção do Node.
+[phases.setup]
+aptPkgs = ["ffmpeg"]

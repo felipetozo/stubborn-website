@@ -1,6 +1,7 @@
 import { Loader2, Folder, Trash2, MoreHorizontal, RotateCcw } from 'lucide-react'
 import type { TrashItem } from '../types'
-import { getFileIcon, isMedia, isImage, formatDate } from '../utils'
+import { Thumb } from './Thumb'
+import { getFileIcon, isMedia, formatDate } from '../utils'
 
 interface TrashViewProps {
   trashItems: TrashItem[]
@@ -45,7 +46,6 @@ export function TrashView({ trashItems, loading, onContextMenu }: TrashViewProps
               ? { Icon: Folder, color: '#888' }
               : getFileIcon(item.name)
             const hasThumb = !item.isDirectory && isMedia(item.name)
-            const thumbUrl = `/api/drive/trash-preview?id=${item.id}&name=${encodeURIComponent(item.name)}`
 
             return (
               <tr
@@ -66,24 +66,12 @@ export function TrashView({ trashItems, loading, onContextMenu }: TrashViewProps
                         className="shrink-0 rounded overflow-hidden"
                         style={{ width: 48, height: 36, background: '#111' }}
                       >
-                        {isImage(item.name) ? (
-                          <img
-                            src={thumbUrl}
-                            alt={item.name}
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                            draggable={false}
-                          />
-                        ) : (
-                          <video
-                            src={thumbUrl}
-                            className="w-full h-full object-cover"
-                            preload="metadata"
-                            muted
-                            playsInline
-                            draggable={false}
-                          />
-                        )}
+                        <Thumb
+                          name={item.name}
+                          path={`.trash/${item.id}`}
+                          className="w-full h-full object-cover"
+                          iconSize={16}
+                        />
                       </div>
                     ) : (
                       <Icon size={15} style={{ color }} />

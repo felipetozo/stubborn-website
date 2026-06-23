@@ -1,10 +1,9 @@
 import { Folder, Check, MoreHorizontal } from 'lucide-react'
 import type { DriveFile } from '../types'
+import { Thumb } from './Thumb'
 import {
   getFileIcon,
   isMedia,
-  isImage,
-  previewUrl,
   formatSize,
   formatDate,
 } from '../utils'
@@ -97,24 +96,12 @@ export function FileList({
                         className="shrink-0 rounded overflow-hidden"
                         style={{ width: 32, height: 24, background: '#111' }}
                       >
-                        {isImage(file.name) ? (
-                          <img
-                            src={previewUrl(file.path)}
-                            alt={file.name}
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                            draggable={false}
-                          />
-                        ) : (
-                          <video
-                            src={previewUrl(file.path)}
-                            className="w-full h-full object-cover"
-                            preload="metadata"
-                            muted
-                            playsInline
-                            draggable={false}
-                          />
-                        )}
+                        <Thumb
+                          name={file.name}
+                          path={file.path}
+                          className="w-full h-full object-cover"
+                          iconSize={14}
+                        />
                       </div>
                     ) : (
                       <Icon size={15} style={{ color }} />

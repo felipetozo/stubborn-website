@@ -1,10 +1,9 @@
 import { Folder, Check, MoreHorizontal } from 'lucide-react'
 import type { DriveFile } from '../types'
+import { Thumb } from './Thumb'
 import {
   getFileIcon,
   isMedia,
-  isImage,
-  previewUrl,
   formatSize,
 } from '../utils'
 
@@ -58,24 +57,12 @@ export function FileGrid({
               }}
             >
               {/* Thumbnail */}
-              {isImage(file.name) ? (
-                <img
-                  src={previewUrl(file.path)}
-                  alt={file.name}
-                  className="absolute inset-0 w-full h-full object-cover"
-                  loading="lazy"
-                  draggable={false}
-                />
-              ) : (
-                <video
-                  src={previewUrl(file.path)}
-                  className="absolute inset-0 w-full h-full object-cover"
-                  preload="metadata"
-                  muted
-                  playsInline
-                  draggable={false}
-                />
-              )}
+              <Thumb
+                name={file.name}
+                path={file.path}
+                className="absolute inset-0 w-full h-full object-cover"
+                iconSize={28}
+              />
 
               {/* Gradient overlay */}
               <div
