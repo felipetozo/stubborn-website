@@ -16,11 +16,14 @@ import {
   Grid3X3,
   List,
   Loader2,
+  Folder,
+  FolderInput,
 } from 'lucide-react'
 
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog'
 import { DropdownMenu, MenuItem, MenuDivider } from '@/components/ui/DropdownMenu'
 import { NewFolderModal } from './NewFolderModal'
+import { MoveModal } from './MoveModal'
 import { UploadProgress } from './UploadProgress'
 import { SelectionBar } from './SelectionBar'
 import { FileGrid } from './FileGrid'
@@ -37,6 +40,7 @@ export function DriveInner() {
   const sidebarView = (searchParams?.get('view') || 'home') as SidebarView
 
   const [files, setFiles]               = useState<DriveFile[]>([])
+  const [rootFolders, setRootFolders]   = useState<{ name: string; path: string }[]>([])
   const [trashItems, setTrashItems]     = useState<TrashItem[]>([])
   const [recentFiles, setRecentFiles]   = useState<DriveFile[]>([])
   const [loading, setLoading]           = useState(true)
@@ -50,6 +54,7 @@ export function DriveInner() {
   const [showUploadProgress, setShowUploadProgress] = useState(false)
   const [contextMenu, setContextMenu]   = useState<ContextMenu | null>(null)
   const [confirmDelete, setConfirmDelete] = useState<DriveFile | null>(null)
+  const [movePaths, setMovePaths]       = useState<string[] | null>(null)
   const [selectedPaths, setSelectedPaths] = useState<Set<string>>(new Set())
   const [isZipping, setIsZipping]       = useState(false)
   const [marquee, setMarquee]           = useState<Marquee | null>(null)
@@ -90,6 +95,20 @@ export function DriveInner() {
     }
   }, [])
 
+  const fetchRootFolders = useCallback(async () => {
+    try {
+      const res = await fetch('/api/drive/files?path=')
+      const data = await res.json()
+      setRootFolders(
+        (data.files || [])
+          .filter((f: DriveFile) => f.type === 'folder')
+          .map((f: DriveFile) => ({ name: f.name, path: f.path }))
+      )
+    } catch {
+      setRootFolders([])
+    }
+  }, [])
+
   const fetchRecent = useCallback(async () => {
     setLoading(true)
     try {
@@ -108,6 +127,10 @@ export function DriveInner() {
     if (sidebarView === 'recent') { fetchRecent(); return }
     fetchFiles()
   }, [sidebarView, fetchFiles, fetchTrash, fetchRecent])
+
+  useEffect(() => {
+    fetchRootFolders()
+  }, [fetchRootFolders])
 
   // ── Close menus on outside click ───────────────────────────────────────────
 
@@ -306,6 +329,30 @@ export function DriveInner() {
       )
     )
     await fetchFiles()
+    fetchRootFolders()
+  }
+
+  // ── Move ───────────────────────────────────────────────────────────────────
+
+  function requestMove(file: DriveFile) {
+    setContextMenu(null)
+    setMovePaths(
+      selectedPaths.has(file.path) && selectedPaths.size > 1
+        ? Array.from(selectedPaths)
+        : [file.path]
+    )
+  }
+
+  function requestMoveSelected() {
+    if (selectedPaths.size === 0) return
+    setMovePaths(Array.from(selectedPaths))
+  }
+
+  async function handleMoved() {
+    setMovePaths(null)
+    setSelectedPaths(new Set())
+    await fetchFiles()
+    fetchRootFolders()
   }
 
   // ── Download ───────────────────────────────────────────────────────────────
@@ -442,6 +489,36 @@ export function DriveInner() {
               </button>
             )
           })}
+
+          {rootFolders.length > 0 && (
+            <>
+              <div className="mx-3 my-2 border-t" style={{ borderColor: '#161616' }} />
+              <p className="px-3 pb-1 pt-1 text-[10px] font-medium uppercase tracking-wider" style={{ color: '#555' }}>
+                Folders
+              </p>
+              {rootFolders.map(folder => {
+                const active =
+                  sidebarView === 'home' &&
+                  (currentPath === folder.path || currentPath.startsWith(`${folder.path}/`))
+                return (
+                  <button
+                    key={folder.path}
+                    onClick={() => navigate(folder.path)}
+                    className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition-colors"
+                    style={{
+                      background: active ? '#1a1a1a' : 'transparent',
+                      color: active ? '#fff' : '#888',
+                    }}
+                    onMouseEnter={e => { if (!active) (e.currentTarget as HTMLElement).style.color = '#fff' }}
+                    onMouseLeave={e => { if (!active) (e.currentTarget as HTMLElement).style.color = '#888' }}
+                  >
+                    <Folder size={15} style={{ color: active ? '#fff' : '#666' }} />
+                    <span className="truncate">{folder.name}</span>
+                  </button>
+                )
+              })}
+            </>
+          )}
         </nav>
       </aside>
 
@@ -602,6 +679,7 @@ export function DriveInner() {
             count={selectedPaths.size}
             isZipping={isZipping}
             onDownload={downloadSelected}
+            onMove={requestMoveSelected}
             onDelete={requestDeleteSelected}
             onClear={() => setSelectedPaths(new Set())}
           />
@@ -646,6 +724,13 @@ export function DriveInner() {
                 }}
               />
             )}
+            <MenuItem
+              icon={FolderInput}
+              label="Move to folder"
+              onClick={() =>
+                requestMove((contextMenu as { kind: 'file'; file: DriveFile; x: number; y: number }).file)
+              }
+            />
             <MenuDivider />
             <MenuItem
               icon={Trash2}
@@ -706,8 +791,15 @@ export function DriveInner() {
         {showNewFolder && (
           <NewFolderModal
             currentPath={currentPath}
-            onCreated={fetchFiles}
+            onCreated={() => { fetchFiles(); fetchRootFolders() }}
             onClose={() => setShowNewFolder(false)}
+          />
+        )}
+        {movePaths && (
+          <MoveModal
+            paths={movePaths}
+            onMoved={handleMoved}
+            onClose={() => setMovePaths(null)}
           />
         )}
         {confirmDelete && (

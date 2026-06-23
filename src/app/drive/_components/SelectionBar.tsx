@@ -1,14 +1,15 @@
-import { Download, Trash2, X, Loader2 } from 'lucide-react'
+import { Download, Trash2, X, Loader2, FolderInput } from 'lucide-react'
 
 interface SelectionBarProps {
   count: number
   isZipping: boolean
   onDownload: () => void
+  onMove: () => void
   onDelete: () => void
   onClear: () => void
 }
 
-export function SelectionBar({ count, isZipping, onDownload, onDelete, onClear }: SelectionBarProps) {
+export function SelectionBar({ count, isZipping, onDownload, onMove, onDelete, onClear }: SelectionBarProps) {
   return (
     <div
       className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-3 rounded-xl border px-4 py-2.5 shadow-2xl"
@@ -31,6 +32,17 @@ export function SelectionBar({ count, isZipping, onDownload, onDelete, onClear }
           : <Download size={12} />
         }
         {isZipping ? 'Compactando…' : 'Download'}
+      </button>
+      <div className="w-px h-3" style={{ background: '#333' }} />
+      <button
+        className="flex cursor-pointer items-center gap-1.5 text-xs transition-colors"
+        style={{ color: '#ccc' }}
+        onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#fff')}
+        onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = '#ccc')}
+        onClick={onMove}
+      >
+        <FolderInput size={12} />
+        Move
       </button>
       <div className="w-px h-3" style={{ background: '#333' }} />
       <button
